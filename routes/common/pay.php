@@ -56,5 +56,9 @@ Route::group(['prefix' => 'pay', 'namespace' => 'Pay', 'middleware' => ['dujiaok
     Route::get('tokenpay/{payway}/{orderSN}', 'TokenPayController@gateway');
     Route::post('tokenpay/notify_url', 'TokenPayController@notifyUrl');
     Route::get('tokenpay/return_url', 'TokenPayController@returnUrl')->name('tokenpay-return');
+    // LDC积分支付
+    Route::get('ldc/{payway}/{orderSN}', 'LdcController@gateway');
+    Route::post('ldc/notify_url', 'LdcController@notifyUrl');
+    Route::get('ldc/return_url', 'LdcController@returnUrl')->name('ldc-return');
 
 });
