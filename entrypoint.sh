@@ -89,6 +89,68 @@ else
     echo "[启动] 检测到已有配置文件，跳过初始化"
 fi
 
+# ============ 重要：根据环境变量更新关键配置 ============
+# 即使 .env 文件已存在，也要根据环境变量更新以下关键配置
+# 这样用户修改 docker-compose.yml 后重启容器就能生效
+
+if [ -f /app/.env ]; then
+    echo "[更新] 检查并更新环境变量配置..."
+
+    # 如果设置了 APP_URL 环境变量，更新它
+    if [ ! -z "${APP_URL}" ]; then
+        CURRENT_APP_URL=$(grep "^APP_URL=" /app/.env | cut -d'=' -f2)
+        if [ "${CURRENT_APP_URL}" != "${APP_URL}" ]; then
+            echo "[更新] APP_URL: ${CURRENT_APP_URL} -> ${APP_URL}"
+            sed -i "s#^APP_URL=.*#APP_URL=${APP_URL}#g" /app/.env
+        fi
+    fi
+
+    # 如果设置了 APP_HTTPS 环境变量，更新 ADMIN_HTTPS
+    if [ ! -z "${APP_HTTPS}" ]; then
+        CURRENT_ADMIN_HTTPS=$(grep "^ADMIN_HTTPS=" /app/.env | cut -d'=' -f2)
+        if [ "${CURRENT_ADMIN_HTTPS}" != "${APP_HTTPS}" ]; then
+            echo "[更新] ADMIN_HTTPS: ${CURRENT_ADMIN_HTTPS} -> ${APP_HTTPS}"
+            sed -i "s/^ADMIN_HTTPS=.*/ADMIN_HTTPS=${APP_HTTPS}/g" /app/.env
+        fi
+    fi
+
+    # 如果设置了 APP_ENV 环境变量，更新它
+    if [ ! -z "${APP_ENV}" ]; then
+        CURRENT_APP_ENV=$(grep "^APP_ENV=" /app/.env | cut -d'=' -f2)
+        if [ "${CURRENT_APP_ENV}" != "${APP_ENV}" ]; then
+            echo "[更新] APP_ENV: ${CURRENT_APP_ENV} -> ${APP_ENV}"
+            sed -i "s/^APP_ENV=.*/APP_ENV=${APP_ENV}/g" /app/.env
+        fi
+    fi
+
+    # 如果设置了 APP_DEBUG 环境变量，更新它
+    if [ ! -z "${APP_DEBUG}" ]; then
+        CURRENT_APP_DEBUG=$(grep "^APP_DEBUG=" /app/.env | cut -d'=' -f2)
+        if [ "${CURRENT_APP_DEBUG}" != "${APP_DEBUG}" ]; then
+            echo "[更新] APP_DEBUG: ${CURRENT_APP_DEBUG} -> ${APP_DEBUG}"
+            sed -i "s/^APP_DEBUG=.*/APP_DEBUG=${APP_DEBUG}/g" /app/.env
+        fi
+    fi
+
+    # 如果设置了 ADMIN_ROUTE_PREFIX 环境变量，更新它
+    if [ ! -z "${ADMIN_ROUTE_PREFIX}" ]; then
+        CURRENT_ADMIN_PREFIX=$(grep "^ADMIN_ROUTE_PREFIX=" /app/.env | cut -d'=' -f2)
+        if [ "${CURRENT_ADMIN_PREFIX}" != "${ADMIN_ROUTE_PREFIX}" ]; then
+            echo "[更新] ADMIN_ROUTE_PREFIX: ${CURRENT_ADMIN_PREFIX} -> ${ADMIN_ROUTE_PREFIX}"
+            sed -i "s/^ADMIN_ROUTE_PREFIX=.*/ADMIN_ROUTE_PREFIX=${ADMIN_ROUTE_PREFIX}/g" /app/.env
+        fi
+    fi
+
+    # 如果设置了 ADMIN_LANGUAGE 环境变量，更新它
+    if [ ! -z "${ADMIN_LANGUAGE}" ]; then
+        CURRENT_ADMIN_LANG=$(grep "^DUJIAO_ADMIN_LANGUAGE=" /app/.env | cut -d'=' -f2)
+        if [ "${CURRENT_ADMIN_LANG}" != "${ADMIN_LANGUAGE}" ]; then
+            echo "[更新] DUJIAO_ADMIN_LANGUAGE: ${CURRENT_ADMIN_LANG} -> ${ADMIN_LANGUAGE}"
+            sed -i "s/^DUJIAO_ADMIN_LANGUAGE=.*/DUJIAO_ADMIN_LANGUAGE=${ADMIN_LANGUAGE}/g" /app/.env
+        fi
+    fi
+fi
+
 # 确保 .env 文件始终有正确的权限（无论是否首次启动）
 if [ -f /app/.env ]; then
     chmod 666 /app/.env
