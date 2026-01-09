@@ -16,18 +16,23 @@ class LdcController extends PayController
             //组装支付参数
             $parameter = [
                 'pid' =>  $this->payGateway->merchant_id,
-                'type' => $payway,
+                'type' => $payway, // 使用配置的支付标识
                 'out_trade_no' => $this->order->order_sn,
-                'return_url' => route('ldc-return', ['order_id' => $this->order->order_sn]),
-                'notify_url' => url($this->payGateway->pay_handleroute . '/notify_url'),
                 'name'   => $this->order->order_sn,
-                'money'  => (float)$this->order->actual_price,
+                'money'  => number_format((float)$this->order->actual_price, 2, '.', ''), // 确保金额格式正确
+                'notify_url' => url($this->payGateway->pay_handleroute . '/notify_url'),
+                'return_url' => route('ldc-return', ['order_id' => $this->order->order_sn]),
                 'sign_type' =>'MD5'
             ];
             ksort($parameter); //重新排序$data数组
             reset($parameter); //内部指针指向数组中的第一个元素
+
+            // 调试：输出排序后的参数
+            \Log::info('LDC支付参数排序后', ['参数' => $parameter]);
+
             $sign = '';
             foreach ($parameter as $key => $val) {
+                \Log::info('LDC处理参数', ['key' => $key, 'val' => $val, 'empty' => empty($val)]);
                 if ($key == "sign" || $key == "sign_type" || $val == "") continue;
                 if ($sign != '') {
                     $sign .= "&";
@@ -35,11 +40,25 @@ class LdcController extends PayController
                 $sign .= "$key=$val"; //拼接为url参数形式
             }
 
-            $sign = md5($sign . $this->payGateway->merchant_pem);//密码追加进入开始MD5签名
+            // 调试输出签名字符串
+            $signString = $sign . $this->payGateway->merchant_pem;
+            \Log::info('LDC支付签名调试', [
+                '原始参数' => $parameter,
+                '签名字符串' => $signString,
+                '密钥' => $this->payGateway->merchant_pem
+            ]);
+
+            $sign = md5($signString);//密码追加进入开始MD5签名
             $parameter['sign'] = $sign;
 
-            //待请求参数数组 - 关键修改：使用POST方法
-            $sHtml = "<form id='ldcsubmit' name='ldcsubmit' action='" . $this->payGateway->merchant_key . "' method='post'>";
+            \Log::info('LDC支付最终签名', [
+                '计算出的签名' => $sign,
+                '最终参数' => $parameter
+            ]);
+
+            //待请求参数数组 - 使用LDC支付接口
+            $apiUrl = rtrim($this->payGateway->merchant_key, '/') . '/pay/submit.php';
+            $sHtml = "<form id='ldcsubmit' name='ldcsubmit' action='" . $apiUrl . "' method='post'>";
 
             foreach($parameter as $key => $val) {
                 $sHtml.= "<input type='hidden' name='".$key."' value='".$val."'/>";
