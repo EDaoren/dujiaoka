@@ -32,8 +32,9 @@ class LdcController extends PayController
 
             $sign = '';
             foreach ($parameter as $key => $val) {
-                \Log::info('LDC处理参数', ['key' => $key, 'val' => $val, 'empty' => empty($val)]);
-                if ($key == "sign" || $key == "sign_type" || $val == "") continue;
+                \Log::info('LDC处理参数', ['key' => $key, 'val' => $val, 'is_empty' => $val === '']);
+                // 使用严格比较，避免数字0被误判为空
+                if ($key == "sign" || $key == "sign_type" || $val === "") continue;
                 if ($sign != '') {
                     $sign .= "&";
                 }
@@ -75,12 +76,14 @@ class LdcController extends PayController
 
     public function notifyUrl(Request $request)
     {
-        $data = $request->all();
+        // LDC使用GET方式发送异步通知，明确从query参数获取
+        $data = $request->query();
 
         // 调试日志：记录收到的通知参数
         \Log::info('LDC支付异步通知', [
             '请求方法' => $request->method(),
-            '通知参数' => $data
+            '通知参数' => $data,
+            '原始QueryString' => $request->getQueryString()
         ]);
 
         if (!isset($data['out_trade_no'])) {
@@ -107,7 +110,8 @@ class LdcController extends PayController
         reset($data); //内部指针指向数组中的第一个元素
         $sign = '';
         foreach ($data as $key => $val) {
-            if ($key == "sign" || $key == "sign_type" || $val == "") continue;
+            // 使用严格比较，避免数字0被误判为空
+            if ($key == "sign" || $key == "sign_type" || $val === "") continue;
             if ($sign != '') {
                 $sign .= "&";
             }
@@ -116,9 +120,14 @@ class LdcController extends PayController
 
         $calculatedSign = md5($sign . $payGateway->merchant_pem);
         \Log::info('LDC通知签名验证', [
-            '签名字符串' => $sign . $payGateway->merchant_pem,
+            '原始参数' => $data,
+            '排序后参数' => $data,
+            '签名字符串（不含密钥）' => $sign,
+            '密钥' => $payGateway->merchant_pem,
+            '完整签名字符串' => $sign . $payGateway->merchant_pem,
             '计算签名' => $calculatedSign,
-            '接收签名' => $data['sign'] ?? 'missing'
+            '接收签名' => $data['sign'] ?? 'missing',
+            '签名是否匹配' => $calculatedSign === ($data['sign'] ?? '')
         ]);
 
         if (!isset($data['trade_no']) || $calculatedSign != ($data['sign'] ?? '')) {
@@ -135,10 +144,27 @@ class LdcController extends PayController
 
     public function returnUrl(Request $request)
     {
-        $oid = $request->get('order_id');
+        // 明确获取订单号参数
+        $oid = $request->input('order_id');
+
+        // 记录返回日志
+        \Log::info('LDC支付同步返回', [
+            '订单号' => $oid,
+            '所有参数' => $request->all()
+        ]);
+
+        // 验证订单号是否存在
+        if (empty($oid)) {
+            \Log::error('LDC返回缺少订单号参数');
+            return redirect('/')->with('error', '订单号参数缺失');
+        }
+
         // 休眠2秒等待异步通知处理完成
+        // 注意：这会阻塞用户请求，但确保订单状态已更新
         sleep(2);
-        return redirect(url('detail-order-sn/' . $oid));
+
+        // 跳转到订单详情页（与其他支付方式保持一致）
+        return redirect(url('detail-order-sn', ['orderSN' => $oid]));
     }
 
 }
