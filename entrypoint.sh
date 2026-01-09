@@ -35,32 +35,41 @@ else
     echo "[启动] 检测到已有配置文件，跳过初始化"
 fi
 
-# 4. 确保必要目录存在
-echo "[检查] 创建必要目录..."
+# 4. 确保必要目录存在并设置权限
+echo "[检查] 创建必要目录并设置权限..."
+
+# 创建 storage 子目录
 mkdir -p /app/storage/logs
-mkdir -p /app/storage/framework/cache
+mkdir -p /app/storage/framework/cache/data
 mkdir -p /app/storage/framework/sessions
 mkdir -p /app/storage/framework/views
+mkdir -p /app/storage/app/public
 mkdir -p /app/bootstrap/cache
 mkdir -p /app/public/uploads
 
-# 5. 设置目录权限
-echo "[权限] 设置目录权限..."
+# 设置目录权限 - 使用 777 确保 Web 服务器可以写入
+# 注意：这里必须在 volume 挂载后执行，所以放在 entrypoint 中
 chmod -R 777 /app/storage
 chmod -R 777 /app/bootstrap/cache
 chmod -R 777 /app/public/uploads
 
-# 6. 清除缓存（可选，避免旧缓存问题）
+# 特别处理 logs 目录（可能被 volume 挂载）
+chmod -R 777 /app/storage/logs
+chown -R application:application /app/storage/logs || true
+
+echo "[权限] 目录权限设置完成"
+
+# 5. 清除缓存（可选，避免旧缓存问题）
 echo "[清理] 清除应用缓存..."
 php artisan config:clear || true
 php artisan cache:clear || true
 php artisan view:clear || true
 
-# 7. 启动队列服务（后台运行）
+# 6. 启动队列服务（后台运行）
 echo "[服务] 启动队列处理服务..."
 php artisan queue:work --sleep=3 --tries=3 >/tmp/queue-work.log 2>&1 &
 
-# 8. 启动 Web 服务
+# 7. 启动 Web 服务
 echo "[服务] 启动 Web 服务..."
 echo "==================================="
 echo "容器启动完成！"
