@@ -22,7 +22,6 @@ class LdcController extends PayController
                 'notify_url' => url($this->payGateway->pay_handleroute . '/notify_url'),
                 'name'   => $this->order->order_sn,
                 'money'  => (float)$this->order->actual_price,
-                'sign' => $this->payGateway->merchant_pem,
                 'sign_type' =>'MD5'
             ];
             ksort($parameter); //重新排序$data数组
@@ -30,12 +29,10 @@ class LdcController extends PayController
             $sign = '';
             foreach ($parameter as $key => $val) {
                 if ($key == "sign" || $key == "sign_type" || $val == "") continue;
-                if ($key != 'sign') {
-                    if ($sign != '') {
-                        $sign .= "&";
-                    }
-                    $sign .= "$key=$val"; //拼接为url参数形式
+                if ($sign != '') {
+                    $sign .= "&";
                 }
+                $sign .= "$key=$val"; //拼接为url参数形式
             }
 
             $sign = md5($sign . $this->payGateway->merchant_pem);//密码追加进入开始MD5签名
@@ -76,12 +73,10 @@ class LdcController extends PayController
         $sign = '';
         foreach ($data as $key => $val) {
             if ($key == "sign" || $key == "sign_type" || $val == "") continue;
-            if ($key != 'sign') {
-                if ($sign != '') {
-                    $sign .= "&";
-                }
-                $sign .= "$key=$val"; //拼接为url参数形式
+            if ($sign != '') {
+                $sign .= "&";
             }
+            $sign .= "$key=$val"; //拼接为url参数形式
         }
         if (!$data['trade_no'] || md5($sign . $payGateway->merchant_pem) != $data['sign']) { //不合法的数据
             return 'fail';  //返回失败 继续补单
