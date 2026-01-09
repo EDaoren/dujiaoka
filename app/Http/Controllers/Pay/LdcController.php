@@ -142,10 +142,11 @@ class LdcController extends PayController
         }
     }
 
-    public function returnUrl(Request $request)
+    public function returnUrl(Request $request, $orderSN = null)
     {
         // 记录所有返回参数，用于调试
         \Log::info('LDC支付同步返回（原始请求）', [
+            '路径参数orderSN' => $orderSN,
             'GET参数' => $request->query(),
             'POST参数' => $request->post(),
             '所有参数' => $request->all(),
@@ -153,19 +154,20 @@ class LdcController extends PayController
             '请求方法' => $request->method()
         ]);
 
-        // 尝试从多个可能的参数中获取订单号
-        // LDC可能返回 out_trade_no（业务单号）而不是 order_id
-        $oid = $request->input('out_trade_no')  // LDC标准参数
-            ?? $request->input('order_id')       // URL中的参数
+        // 优先使用路径参数中的订单号
+        $oid = $orderSN
+            ?? $request->input('out_trade_no')  // LDC标准参数（备用）
+            ?? $request->input('order_id')       // URL查询参数（备用）
             ?? $request->input('order_sn')       // 其他可能的参数
             ?? $request->input('orderSN');       // 其他可能的参数
 
         \Log::info('LDC支付同步返回（解析后）', [
             '订单号' => $oid,
-            '来源参数' => $request->has('out_trade_no') ? 'out_trade_no' :
-                         ($request->has('order_id') ? 'order_id' :
-                         ($request->has('order_sn') ? 'order_sn' :
-                         ($request->has('orderSN') ? 'orderSN' : 'none')))
+            '来源' => $orderSN ? '路径参数' :
+                     ($request->has('out_trade_no') ? 'out_trade_no' :
+                     ($request->has('order_id') ? 'order_id' :
+                     ($request->has('order_sn') ? 'order_sn' :
+                     ($request->has('orderSN') ? 'orderSN' : 'none'))))
         ]);
 
         // 验证订单号是否存在

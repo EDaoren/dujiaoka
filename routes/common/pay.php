@@ -59,6 +59,6 @@ Route::group(['prefix' => 'pay', 'namespace' => 'Pay', 'middleware' => ['dujiaok
     // LDC积分支付
     Route::get('ldc/{payway}/{orderSN}', 'LdcController@gateway');
     Route::get('ldc/notify_url', 'LdcController@notifyUrl'); // 改为GET方法
-    Route::get('ldc/return_url', 'LdcController@returnUrl')->name('ldc-return');
+    Route::get('ldc/return_url', 'LdcController@returnUrl')->name('ldc-return'); // 订单号作为路径参数
 
 });
