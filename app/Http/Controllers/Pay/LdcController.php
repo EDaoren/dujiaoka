@@ -76,17 +76,33 @@ class LdcController extends PayController
     public function notifyUrl(Request $request)
     {
         $data = $request->all();
+
+        // 调试日志：记录收到的通知参数
+        \Log::info('LDC支付异步通知', [
+            '请求方法' => $request->method(),
+            '通知参数' => $data
+        ]);
+
+        if (!isset($data['out_trade_no'])) {
+            \Log::error('LDC通知缺少out_trade_no参数');
+            return 'fail';
+        }
+
         $order = $this->orderService->detailOrderSN($data['out_trade_no']);
         if (!$order) {
+            \Log::error('LDC通知找不到订单', ['out_trade_no' => $data['out_trade_no']]);
             return 'fail';
         }
         $payGateway = $this->payService->detail($order->pay_id);
         if (!$payGateway) {
+            \Log::error('LDC通知找不到支付网关', ['pay_id' => $order->pay_id]);
             return 'fail';
         }
         if($payGateway->pay_handleroute != '/pay/ldc'){
+            \Log::error('LDC通知支付路由不匹配', ['route' => $payGateway->pay_handleroute]);
             return 'fail';
         }
+
         ksort($data); //重新排序$data数组
         reset($data); //内部指针指向数组中的第一个元素
         $sign = '';
@@ -97,11 +113,21 @@ class LdcController extends PayController
             }
             $sign .= "$key=$val"; //拼接为url参数形式
         }
-        if (!$data['trade_no'] || md5($sign . $payGateway->merchant_pem) != $data['sign']) { //不合法的数据
+
+        $calculatedSign = md5($sign . $payGateway->merchant_pem);
+        \Log::info('LDC通知签名验证', [
+            '签名字符串' => $sign . $payGateway->merchant_pem,
+            '计算签名' => $calculatedSign,
+            '接收签名' => $data['sign'] ?? 'missing'
+        ]);
+
+        if (!isset($data['trade_no']) || $calculatedSign != ($data['sign'] ?? '')) {
+            \Log::error('LDC通知签名验证失败');
             return 'fail';  //返回失败 继续补单
         } else {
             //合法的数据
             //业务处理
+            \Log::info('LDC通知验证成功，处理订单', ['out_trade_no' => $data['out_trade_no']]);
             $this->orderProcessService->completedOrder($data['out_trade_no'], $data['money'], $data['trade_no']);
             return 'success';
         }
@@ -112,7 +138,7 @@ class LdcController extends PayController
         $oid = $request->get('order_id');
         // 休眠2秒等待异步通知处理完成
         sleep(2);
-        return redirect(url('detail-order-sn', ['orderSN' => $oid]));
+        return redirect(url('detail-order-sn/' . $oid));
     }
 
 }
