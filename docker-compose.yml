@@ -4,53 +4,22 @@ services:
     container_name: dujiaoka
     ports:
       - "8111:80"
-      - "9000:9000"
     volumes:
-      # 上传文件目录 - 持久化用户上传的图片等资源
       - ./data/uploads:/app/public/uploads
     environment:
-      # ============ Web 服务器配置 ============
+      # Web 服务器配置
       WEB_DOCUMENT_ROOT: "/app/public"
       TZ: Asia/Shanghai
 
-      # ============ 应用基础配置（必需） ============
-      # 应用访问地址（重要：如果使用 HTTPS，请修改为 https:// 开头）
+      # 应用配置
       APP_URL: "http://localhost:8111"
-
-      # 是否启用 HTTPS（true/false）
-      # 如果前端使用 HTTPS，必须设置为 true，否则后台会报混合内容错误
       APP_HTTPS: "false"
-
-      # 应用环境（local/production）
-      # 生产环境建议设置为 production
       APP_ENV: "local"
-
-      # 调试模式（true/false）
-      # 生产环境必须设置为 false
       APP_DEBUG: "true"
 
-      # ============ 后台配置（可选） ============
-      # 后台访问路径（默认：admin）
-      # 修改后访问地址为: http://your-domain/{ADMIN_ROUTE_PREFIX}
+      # 后台配置
       ADMIN_ROUTE_PREFIX: "admin"
-
-      # 后台语言（zh_CN/zh_TW/en）
-      # zh_CN: 简体中文, zh_TW: 繁体中文, en: 英文
       ADMIN_LANGUAGE: "zh_CN"
-
-      # ============ 数据库配置（可选，通过安装向导配置更简单） ============
-      # 如果不设置，需要通过安装向导填写
-      # DB_HOST: "your-mysql-host"
-      # DB_PORT: "3306"
-      # DB_DATABASE: "dujiaoka"
-      # DB_USERNAME: "root"
-      # DB_PASSWORD: "your-password"
-
-      # ============ Redis配置（可选，通过安装向导配置更简单） ============
-      # 如果不设置，需要通过安装向导填写
-      # REDIS_HOST: "your-redis-host"
-      # REDIS_PORT: "6379"
-      # REDIS_PASSWORD: "your-password"
 
     tty: true
     restart: always
@@ -60,59 +29,3 @@ services:
 networks:
   dujiaoka:
     driver: bridge
-
-# ============================================================
-#                      使用说明
-# ============================================================
-#
-# 【快速开始 - 使用安装向导（推荐）】
-# 1. 修改上面的 APP_URL 和 APP_HTTPS
-#    - 本地测试: APP_URL: "http://localhost:8111", APP_HTTPS: "false"
-#    - 生产环境: APP_URL: "https://your-domain.com", APP_HTTPS: "true"
-#
-# 2. 启动容器: docker compose up -d
-#
-# 3. 访问首页会自动跳转到安装页面，填写数据库和 Redis 信息
-#
-# 4. 完成安装后，访问后台: http://your-domain/admin
-#
-# ------------------------------------------------------------
-#
-# 【高级配置 - 预配置数据库（跳过安装向导）】
-# 1. 取消注释上面的 DB_* 和 REDIS_* 环境变量
-# 2. 填写真实的数据库和 Redis 连接信息
-# 3. 启动容器后，应用会自动连接数据库，但仍需访问安装页面初始化数据库表
-#
-# ------------------------------------------------------------
-#
-# 【生产环境建议】
-# - APP_ENV: "production"
-# - APP_DEBUG: "false"
-# - APP_HTTPS: "true"
-# - ADMIN_ROUTE_PREFIX: 修改为随机路径（提高安全性）
-#
-# ------------------------------------------------------------
-#
-# 【常用命令】
-# - 查看日志: docker compose logs -f web
-# - 进入容器: docker compose exec web bash
-# - 重启容器: docker compose restart
-# - 停止容器: docker compose stop
-# - 删除容器: docker compose down
-#
-# ------------------------------------------------------------
-#
-# 【数据持久化】
-# - 用户上传文件: ./data/uploads (已挂载)
-# - 配置文件(.env): 保存在容器内
-# - 安装锁(install.lock): 保存在容器内
-# - 应用日志: 保存在容器内，使用 docker compose logs 查看
-#
-# ------------------------------------------------------------
-#
-# 【注意事项】
-# - 删除容器后需要重新安装
-# - 如需备份配置: docker cp dujiaoka:/app/.env ./env.backup
-# - 如需保留安装状态: docker commit dujiaoka dujiaoka:backup
-#
-# ============================================================

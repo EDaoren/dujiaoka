@@ -26,46 +26,29 @@ fi
 # ============================================
 # 第二步：处理 .env 文件
 # ============================================
-if [ ! -f /app/.env ]; then
-    # 首次启动：创建基础 .env 文件
-    echo "[2/5] 首次启动，初始化 .env 配置文件..."
+echo "[2/5] 处理 .env 配置文件..."
 
-    # 复制模板
-    cp /app/.env.example /app/.env
-
-    # 生成应用密钥
+# .env 文件已经在镜像中，直接更新即可
+# 检查是否需要生成 APP_KEY
+if grep -q "^APP_KEY=$" /app/.env || grep -q "^APP_KEY=\s*$" /app/.env; then
+    echo "[2/5] 生成应用密钥..."
     php artisan key:generate --force
-
-    # 禁用 Redis（首次启动时避免连接失败）
-    # 用户通过安装向导配置后会自动启用
-    sed -i 's/CACHE_DRIVER=redis/CACHE_DRIVER=file/g' /app/.env
-    sed -i 's/QUEUE_CONNECTION=redis/QUEUE_CONNECTION=sync/g' /app/.env
-
-    # 设置文件权限
-    chmod 666 /app/.env
-    chown application:application /app/.env || true
-
-    echo "[2/5] .env 创建完成"
-    echo "[提示] 首次使用请访问 ${APP_URL:-http://localhost:8111}/install 进行安装"
-else
-    # 非首次启动：根据环境变量更新关键配置
-    echo "[2/5] 检测到已有配置，根据环境变量更新关键配置..."
-
-    # 只更新用户可能通过 docker-compose.yml 修改的配置
-    # 这样用户修改 docker-compose.yml 后重启容器就能生效
-    [ ! -z "${APP_URL}" ] && sed -i "s#^APP_URL=.*#APP_URL=${APP_URL}#g" /app/.env
-    [ ! -z "${APP_ENV}" ] && sed -i "s/^APP_ENV=.*/APP_ENV=${APP_ENV}/g" /app/.env
-    [ ! -z "${APP_DEBUG}" ] && sed -i "s/^APP_DEBUG=.*/APP_DEBUG=${APP_DEBUG}/g" /app/.env
-    [ ! -z "${APP_HTTPS}" ] && sed -i "s/^ADMIN_HTTPS=.*/ADMIN_HTTPS=${APP_HTTPS}/g" /app/.env
-    [ ! -z "${ADMIN_ROUTE_PREFIX}" ] && sed -i "s/^ADMIN_ROUTE_PREFIX=.*/ADMIN_ROUTE_PREFIX=${ADMIN_ROUTE_PREFIX}/g" /app/.env
-    [ ! -z "${ADMIN_LANGUAGE}" ] && sed -i "s/^DUJIAO_ADMIN_LANGUAGE=.*/DUJIAO_ADMIN_LANGUAGE=${ADMIN_LANGUAGE}/g" /app/.env
-
-    # 确保权限正确
-    chmod 666 /app/.env
-    chown application:application /app/.env || true
-
-    echo "[2/5] 配置更新完成"
 fi
+
+# 根据环境变量更新关键配置
+# 这样用户修改 docker-compose.yml 后重启容器就能生效
+[ ! -z "${APP_URL}" ] && sed -i "s#^APP_URL=.*#APP_URL=${APP_URL}#g" /app/.env
+[ ! -z "${APP_ENV}" ] && sed -i "s/^APP_ENV=.*/APP_ENV=${APP_ENV}/g" /app/.env
+[ ! -z "${APP_DEBUG}" ] && sed -i "s/^APP_DEBUG=.*/APP_DEBUG=${APP_DEBUG}/g" /app/.env
+[ ! -z "${APP_HTTPS}" ] && sed -i "s/^ADMIN_HTTPS=.*/ADMIN_HTTPS=${APP_HTTPS}/g" /app/.env
+[ ! -z "${ADMIN_ROUTE_PREFIX}" ] && sed -i "s/^ADMIN_ROUTE_PREFIX=.*/ADMIN_ROUTE_PREFIX=${ADMIN_ROUTE_PREFIX}/g" /app/.env
+[ ! -z "${ADMIN_LANGUAGE}" ] && sed -i "s/^DUJIAO_ADMIN_LANGUAGE=.*/DUJIAO_ADMIN_LANGUAGE=${ADMIN_LANGUAGE}/g" /app/.env
+
+# 确保权限正确
+chmod 666 /app/.env
+chown application:application /app/.env || true
+
+echo "[2/5] .env 配置完成"
 
 # ============================================
 # 第三步：创建必要目录并设置权限

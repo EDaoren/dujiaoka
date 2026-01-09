@@ -34,8 +34,8 @@ bootstrap/cache/*
 # 用户上传文件（生产环境应该在 volume 中）
 public/uploads/*
 
-# 环境配置文件（容器启动时生成）
-.env
+# 环境配置文件
+# 注意：.env 文件会被包含在镜像中作为基础配置
 .env.backup
 .env.local
 
