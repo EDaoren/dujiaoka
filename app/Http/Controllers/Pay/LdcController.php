@@ -144,26 +144,42 @@ class LdcController extends PayController
 
     public function returnUrl(Request $request)
     {
-        // 明确获取订单号参数
-        $oid = $request->input('order_id');
+        // 记录所有返回参数，用于调试
+        \Log::info('LDC支付同步返回（原始请求）', [
+            'GET参数' => $request->query(),
+            'POST参数' => $request->post(),
+            '所有参数' => $request->all(),
+            '原始URL' => $request->fullUrl(),
+            '请求方法' => $request->method()
+        ]);
 
-        // 记录返回日志
-        \Log::info('LDC支付同步返回', [
+        // 尝试从多个可能的参数中获取订单号
+        // LDC可能返回 out_trade_no（业务单号）而不是 order_id
+        $oid = $request->input('out_trade_no')  // LDC标准参数
+            ?? $request->input('order_id')       // URL中的参数
+            ?? $request->input('order_sn')       // 其他可能的参数
+            ?? $request->input('orderSN');       // 其他可能的参数
+
+        \Log::info('LDC支付同步返回（解析后）', [
             '订单号' => $oid,
-            '所有参数' => $request->all()
+            '来源参数' => $request->has('out_trade_no') ? 'out_trade_no' :
+                         ($request->has('order_id') ? 'order_id' :
+                         ($request->has('order_sn') ? 'order_sn' :
+                         ($request->has('orderSN') ? 'orderSN' : 'none')))
         ]);
 
         // 验证订单号是否存在
         if (empty($oid)) {
-            \Log::error('LDC返回缺少订单号参数');
-            return redirect('/')->with('error', '订单号参数缺失');
+            \Log::error('LDC返回缺少订单号参数，所有尝试均失败');
+            // 跳转到首页并提示用户查询订单
+            return redirect('/')->with('info', '支付完成，请在首页查询订单状态');
         }
 
         // 休眠2秒等待异步通知处理完成
         // 注意：这会阻塞用户请求，但确保订单状态已更新
         sleep(2);
 
-        // 跳转到订单详情页（与其他支付方式保持一致）
+        // 跳转到订单详情页
         return redirect(url('detail-order-sn', ['orderSN' => $oid]));
     }
 
