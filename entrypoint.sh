@@ -29,13 +29,19 @@ if [ ! -f /app/.env ]; then
     sed -i 's/{redis_port}/6379/g' /app/.env
     sed -i 's/{admin_path}/admin/g' /app/.env
 
+    # 4. 首次启动时，禁用 Redis，避免连接失败
+    # 用户通过安装向导配置后，会自动启用 Redis
+    echo "[初始化] 配置缓存和队列驱动..."
+    sed -i 's/CACHE_DRIVER=redis/CACHE_DRIVER=file/g' /app/.env
+    sed -i 's/QUEUE_CONNECTION=redis/QUEUE_CONNECTION=sync/g' /app/.env
+
     echo "[初始化] 配置文件创建完成"
     echo "[提示] 首次使用请访问 /install 进行安装配置"
 else
     echo "[启动] 检测到已有配置文件，跳过初始化"
 fi
 
-# 4. 确保必要目录存在并设置权限
+# 5. 确保必要目录存在并设置权限
 echo "[检查] 创建必要目录并设置权限..."
 
 # 创建 storage 子目录
@@ -59,17 +65,23 @@ chown -R application:application /app/storage/logs || true
 
 echo "[权限] 目录权限设置完成"
 
-# 5. 清除缓存（可选，避免旧缓存问题）
+# 6. 清除缓存（可选，避免旧缓存问题）
 echo "[清理] 清除应用缓存..."
 php artisan config:clear || true
 php artisan cache:clear || true
 php artisan view:clear || true
 
-# 6. 启动队列服务（后台运行）
-echo "[服务] 启动队列处理服务..."
-php artisan queue:work --sleep=3 --tries=3 >/tmp/queue-work.log 2>&1 &
+# 7. 检查是否需要启动队列服务
+# 如果配置了 Redis 队列，才启动队列服务
+QUEUE_DRIVER=$(grep "^QUEUE_CONNECTION=" /app/.env | cut -d'=' -f2)
+if [ "$QUEUE_DRIVER" = "redis" ]; then
+    echo "[服务] 启动队列处理服务（Redis 驱动）..."
+    php artisan queue:work --sleep=3 --tries=3 >/tmp/queue-work.log 2>&1 &
+else
+    echo "[服务] 队列使用同步模式，不启动后台服务"
+fi
 
-# 7. 启动 Web 服务
+# 8. 启动 Web 服务
 echo "[服务] 启动 Web 服务..."
 echo "==================================="
 echo "容器启动完成！"
