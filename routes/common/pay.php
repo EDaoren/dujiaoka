@@ -58,7 +58,7 @@ Route::group(['prefix' => 'pay', 'namespace' => 'Pay', 'middleware' => ['dujiaok
     Route::get('tokenpay/return_url', 'TokenPayController@returnUrl')->name('tokenpay-return');
     // LDC积分支付
     Route::get('ldc/{payway}/{orderSN}', 'LdcController@gateway');
-    Route::get('ldc/notify_url', 'LdcController@notifyUrl'); // 改为GET方法
-    Route::get('ldc/return_url', 'LdcController@returnUrl')->name('ldc-return'); // 订单号作为路径参数
+    Route::get('ldc/notify_url', 'LdcController@notifyUrl'); // 异步通知（GET方式）
+    Route::get('ldc/return_url', 'LdcController@returnUrl')->name('ldc-return'); // 同步返回（通过Session获取订单号）
 
 });

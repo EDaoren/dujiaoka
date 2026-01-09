@@ -13,6 +13,12 @@ class LdcController extends PayController
         try {
             // 加载网关
             $this->loadGateWay($orderSN, $payway);
+
+            // 将订单号存入Session，用于同步返回时识别订单
+            // 注意：LDC的return_url只参与签名，不会覆盖后台配置的URL，所以无法通过URL传递参数
+            session(['ldc_latest_order' => $this->order->order_sn]);
+            \Log::info('LDC支付存储订单到Session', ['订单号' => $this->order->order_sn]);
+
             //组装支付参数
             $parameter = [
                 'pid' =>  $this->payGateway->merchant_id,
@@ -21,7 +27,7 @@ class LdcController extends PayController
                 'name'   => $this->order->order_sn,
                 'money'  => number_format((float)$this->order->actual_price, 2, '.', ''), // 确保金额格式正确
                 'notify_url' => url($this->payGateway->pay_handleroute . '/notify_url'),
-                'return_url' => route('ldc-return', ['order_id' => $this->order->order_sn]),
+                'return_url' => route('ldc-return'), // LDC会使用后台配置的URL，这里只参与签名
                 'sign_type' =>'MD5'
             ];
             ksort($parameter); //重新排序$data数组
@@ -78,19 +84,16 @@ class LdcController extends PayController
     {
         // LDC使用GET方式发送异步通知，明确从query参数获取
         $data = $request->query();
-
         // 调试日志：记录收到的通知参数
         \Log::info('LDC支付异步通知', [
             '请求方法' => $request->method(),
             '通知参数' => $data,
             '原始QueryString' => $request->getQueryString()
         ]);
-
         if (!isset($data['out_trade_no'])) {
             \Log::error('LDC通知缺少out_trade_no参数');
             return 'fail';
         }
-
         $order = $this->orderService->detailOrderSN($data['out_trade_no']);
         if (!$order) {
             \Log::error('LDC通知找不到订单', ['out_trade_no' => $data['out_trade_no']]);
@@ -105,7 +108,6 @@ class LdcController extends PayController
             \Log::error('LDC通知支付路由不匹配', ['route' => $payGateway->pay_handleroute]);
             return 'fail';
         }
-
         ksort($data); //重新排序$data数组
         reset($data); //内部指针指向数组中的第一个元素
         $sign = '';
@@ -117,7 +119,6 @@ class LdcController extends PayController
             }
             $sign .= "$key=$val"; //拼接为url参数形式
         }
-
         $calculatedSign = md5($sign . $payGateway->merchant_pem);
         \Log::info('LDC通知签名验证', [
             '原始参数' => $data,
@@ -142,47 +143,33 @@ class LdcController extends PayController
         }
     }
 
-    public function returnUrl(Request $request, $orderSN = null)
+    public function returnUrl(Request $request)
     {
-        // 记录所有返回参数，用于调试
-        \Log::info('LDC支付同步返回（原始请求）--', [
-            '路径参数orderSN' => $orderSN,
+        // 记录同步返回信息
+        \Log::info('LDC支付同步返回', [
             'GET参数' => $request->query(),
-            'POST参数' => $request->post(),
-            '所有参数' => $request->all(),
             '原始URL' => $request->fullUrl(),
-            '请求方法' => $request->method()
+            'Session中的订单号' => session('ldc_latest_order')
         ]);
+        // 从Session获取最近发起的订单号
+        // 因为LDC的return_url只参与签名，实际跳转到后台配置的固定URL，无法传递订单信息
+        $orderSN = session('ldc_latest_order');
 
-        // 优先使用路径参数中的订单号
-        $oid = $orderSN
-            ?? $request->input('out_trade_no')  // LDC标准参数（备用）
-            ?? $request->input('order_id')       // URL查询参数（备用）
-            ?? $request->input('order_sn')       // 其他可能的参数
-            ?? $request->input('orderSN');       // 其他可能的参数
+        if ($orderSN) {
+            // 清除Session，避免下次支付时混淆
+            session()->forget('ldc_latest_order');
 
-        \Log::info('LDC支付同步返回（解析后）', [
-            '订单号' => $oid,
-            '来源' => $orderSN ? '路径参数' :
-                     ($request->has('out_trade_no') ? 'out_trade_no' :
-                     ($request->has('order_id') ? 'order_id' :
-                     ($request->has('order_sn') ? 'order_sn' :
-                     ($request->has('orderSN') ? 'orderSN' : 'none'))))
-        ]);
+            \Log::info('LDC支付从Session获取到订单号', ['订单号' => $orderSN]);
 
-        // 验证订单号是否存在
-        if (empty($oid)) {
-            \Log::error('LDC返回缺少订单号参数，所有尝试均失败');
-            // 跳转到首页并提示用户查询订单
-            return redirect('/')->with('info', '支付完成，请在首页查询订单状态');
+            // 休眠2秒等待异步通知处理完成
+            sleep(2);
+
+            // 跳转到订单详情页
+            return redirect(url('detail-order-sn', ['orderSN' => $orderSN]));
         }
-
-        // 休眠2秒等待异步通知处理完成
-        // 注意：这会阻塞用户请求，但确保订单状态已更新
-        sleep(2);
-
-        // 跳转到订单详情页
-        return redirect(url('detail-order-sn', ['orderSN' => $oid]));
+        // 如果Session中没有订单号（可能Session过期或用户直接访问），跳转到首页
+        \Log::warning('LDC支付同步返回时Session中没有订单号');
+        return redirect('/')->with('info', '支付完成，请在订单查询页面查看订单状态');
     }
 
 }
