@@ -145,7 +145,7 @@ class LdcController extends PayController
     public function returnUrl(Request $request, $orderSN = null)
     {
         // 记录所有返回参数，用于调试
-        \Log::info('LDC支付同步返回（原始请求）', [
+        \Log::info('LDC支付同步返回（原始请求）--', [
             '路径参数orderSN' => $orderSN,
             'GET参数' => $request->query(),
             'POST参数' => $request->post(),
