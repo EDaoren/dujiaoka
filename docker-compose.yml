@@ -6,12 +6,10 @@ services:
       - "8111:80"
       - "9000:9000"
     volumes:
-      # 安装锁文件 - 避免容器重启后需要重新安装
-      - ./data/install.lock:/app/install.lock
-
       # 上传文件目录 - 持久化用户上传的图片等资源
       - ./data/uploads:/app/public/uploads
 
+      # 注意：不挂载 install.lock，让它保存在容器内
       # 注意：不挂载 logs 目录，避免权限问题
       # 查看日志使用：docker compose logs -f web
       # 导出日志使用：docker cp dujiaoka:/app/storage/logs ./logs-backup
@@ -32,9 +30,11 @@ networks:
 
 # 使用说明：
 # 1. 首次启动: docker compose up -d
-# 2. 访问 http://localhost:8111/install 进行安装配置
-# 3. 配置文件 (.env) 自动生成在容器内，无需手动创建
+# 2. 访问 http://localhost:8111 会自动跳转到安装页面
+# 3. 配置文件 (.env) 和 install.lock 自动保存在容器内
 # 4. 需要自行准备 MySQL 和 Redis 服务，在安装向导中填写连接信息
-# 5. 持久化数据保存在 ./data 目录中
+# 5. 用户上传文件持久化保存在 ./data/uploads 目录
 # 6. 查看日志: docker compose logs -f web
 # 7. 导出日志: docker cp dujiaoka:/app/storage/logs ./logs-backup
+#
+# 注意：容器删除后需要重新安装！如需保留安装状态，请使用 volume 挂载
