@@ -35,10 +35,20 @@ if [ ! -f /app/.env ]; then
     sed -i 's/CACHE_DRIVER=redis/CACHE_DRIVER=file/g' /app/.env
     sed -i 's/QUEUE_CONNECTION=redis/QUEUE_CONNECTION=sync/g' /app/.env
 
+    # 5. 设置 .env 文件权限，确保安装程序可以写入
+    chmod 666 /app/.env
+    chown application:application /app/.env || true
+
     echo "[初始化] 配置文件创建完成"
     echo "[提示] 首次使用请访问 /install 进行安装配置"
 else
     echo "[启动] 检测到已有配置文件，跳过初始化"
+fi
+
+# 确保 .env 文件始终有正确的权限（无论是否首次启动）
+if [ -f /app/.env ]; then
+    chmod 666 /app/.env
+    chown application:application /app/.env || true
 fi
 
 # 5. 确保必要目录存在并设置权限
