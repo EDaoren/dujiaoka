@@ -6,14 +6,32 @@ services:
       - "8111:80"
       - "9000:9000"
     volumes:
-      # 增加此行，则将环境信息进行复制到容器，请确保你存在该文件
-      - ~/dujiaoka/.env:/app/.env
-      # 增加此行，避免每次重新创建容器都需要初始化
-      - ~/dujiaoka/install.lock:/app/install.lock
-      # 增加此行，确保将上传的资源映射出来，避免容器重新创建后图片不在了
-      - ~/dujiaoka/public/uploads:/app/public/uploads
+      # 安装锁文件 - 避免容器重启后需要重新安装
+      - ./data/install.lock:/app/install.lock
+
+      # 上传文件目录 - 持久化用户上传的图片等资源
+      - ./data/uploads:/app/public/uploads
+
+      # 日志目录 - 持久化应用日志，便于排查问题
+      - ./data/logs:/app/storage/logs
     environment:
+      # Web 服务器文档根目录
       WEB_DOCUMENT_ROOT: "/app/public"
+
+      # 时区设置
       TZ: Asia/Shanghai
     tty: true
     restart: always
+    networks:
+      - dujiaoka
+
+networks:
+  dujiaoka:
+    driver: bridge
+
+# 使用说明：
+# 1. 首次启动: docker compose up -d
+# 2. 访问 http://localhost:8111/install 进行安装配置
+# 3. 配置文件 (.env) 自动生成在容器内，无需手动创建
+# 4. 需要自行准备 MySQL 和 Redis 服务，在安装向导中填写连接信息
+# 5. 持久化数据保存在 ./data 目录中

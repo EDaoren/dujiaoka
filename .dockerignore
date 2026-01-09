@@ -1,0 +1,68 @@
+# Git 相关
+.git
+.gitignore
+.gitattributes
+
+# Docker 相关
+.dockerignore
+docker-compose.yml
+Dockerfile
+
+# 文档和说明
+README.md
+CLAUDE.md
+DOCKER_USAGE.md
+*.md
+
+# IDE 配置
+.idea
+.vscode
+*.swp
+*.swo
+*~
+
+# 日志文件
+storage/logs/*.log
+*.log
+
+# 缓存文件
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+bootstrap/cache/*
+
+# 用户上传文件（生产环境应该在 volume 中）
+public/uploads/*
+
+# 环境配置文件（容器启动时生成）
+.env
+.env.backup
+.env.local
+
+# 安装锁文件（通过 volume 挂载）
+install.lock
+
+# 测试相关
+tests
+phpunit.xml
+.phpunit.result.cache
+
+# Node.js 相关（如果有前端构建）
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Composer 缓存
+vendor/bin/.phpunit
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 临时文件
+tmp
+temp
+*.tmp
+
+# 数据目录（通过 volume 挂载）
+data/
