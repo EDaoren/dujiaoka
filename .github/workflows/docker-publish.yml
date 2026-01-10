@@ -45,3 +45,12 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      - name: 更新 Docker Hub 描述
+        uses: peter-evans/dockerhub-description@v4
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: ${{ secrets.DOCKERHUB_USERNAME }}/dujiaoka
+          readme-filepath: ./DOCKERHUB.md
+          short-description: "独角数卡 - 开源自动化数字商品销售平台 (自动化 Docker 部署版本)"
