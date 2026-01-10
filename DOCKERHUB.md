@@ -54,6 +54,8 @@ services:
       APP_ENV: "production"
       APP_DEBUG: "false"
       APP_HTTPS: "false"  # 如果配置 HTTPS 域名，改为 true
+      # APP_KEY 用于加密，建议修改为你自己的密钥（必须保留 base64: 前缀）
+      APP_KEY: "base64:hDVkYhfkUjaePiaI1tcBT7G8bh2A8RQxwWIGkq7BO18="
 
       # 数据库配置（请修改为你的实际配置）
       DB_HOST: "your_mysql_host"
@@ -93,12 +95,27 @@ docker-compose up -d
 
 ## 📝 环境变量说明
 
+### 重要提示
+
+**APP_KEY 说明**
+
+加密数据用的，部署后就不要改，否则加密数据无法解密
+
+```bash
+openssl rand -base64 32  # 生成随机密钥
+# 添加 base64: 前缀：base64:xK3j8mN9pL2qR5sT7vU1wX4yZ6aB8cD0
+```
+⚠️ 必须保留 `base64:` 前缀！
+
+### 环境变量列表
+
 | 变量名 | 说明 | 默认值 |
 |--------|------|--------|
 | `APP_NAME` | 应用名称 | 独角数卡 |
 | `APP_URL` | 应用地址 | http://localhost:8111 |
 | `APP_ENV` | 运行环境 | production |
 | `APP_DEBUG` | 调试模式 | false |
+| `APP_KEY` | 加密密钥（必须保留 base64: 前缀） | base64:xK3j8mN9... |
 | `APP_HTTPS` | 是否启用 HTTPS | false |
 | `DB_HOST` | MySQL 主机地址 | **必填** |
 | `DB_PORT` | MySQL 端口 | 3306 |

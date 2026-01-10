@@ -13,8 +13,8 @@ echo "[1/4] 从环境变量生成 .env 配置文件..."
 # 从模板复制
 cp /app/.env.example /app/.env
 
-# 生成 APP_KEY（使用 openssl 生成随机密钥）
-APP_KEY="base64:$(openssl rand -base64 32)"
+# 直接使用环境变量中的 APP_KEY（必须包含 base64: 前缀）
+echo "[1/4] 使用环境变量中的 APP_KEY"
 
 # 替换所有占位符（使用 | 作为分隔符避免特殊字符冲突）
 sed -i "s|{title}|${APP_NAME:-独角数卡}|g" /app/.env

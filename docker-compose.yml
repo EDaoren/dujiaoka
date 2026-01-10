@@ -16,6 +16,9 @@ services:
       APP_URL: "http://localhost:8111"
       APP_ENV: "production"
       APP_DEBUG: "false"
+      # APP_KEY 用于加密，建议修改为你自己的密钥
+      # 生成方法：openssl rand -base64 32，然后加上 base64: 前缀
+      APP_KEY: "base64:hDVkYhfkUjaePiaI1tcBT7G8bh2A8RQxwWIGkq7BO18="
 
       # 如果配置https域名，需要配置true
       APP_HTTPS: "false"

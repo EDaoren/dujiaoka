@@ -62,6 +62,8 @@ services:
       APP_ENV: "production"
       APP_DEBUG: "false"
       APP_HTTPS: "false"  # 如果配置 HTTPS 域名，改为 true
+      # APP_KEY 用于加密，建议修改为你自己的密钥（必须保留 base64: 前缀）
+      APP_KEY: "base64:hDVkYhfkUjaePiaI1tcBT7G8bh2A8RQxwWIGkq7BO18="
 
       # 数据库配置（请修改为你的实际配置）
       DB_HOST: "your_mysql_host"
@@ -125,6 +127,22 @@ docker-compose up -d
 - 后台：`http://localhost:8111/admin` (账号：`admin` / 密码：`admin`)
 
 ## 📝 配置说明
+
+### APP_KEY 说明
+
+加密数据用的，部署后就不要改，否则加密数据无法解密
+
+```bash
+# 生成随机密钥
+openssl rand -base64 32
+# 输出：xK3j8mN9pL2qR5sT7vU1wX4yZ6aB8cD0
+
+# 添加 base64: 前缀后填入配置
+APP_KEY: "base64:xK3j8mN9pL2qR5sT7vU1wX4yZ6aB8cD0"
+```
+⚠️ **重要：** 必须保留 `base64:` 前缀，且 APP_KEY 一旦设置就不要改变！
+
+### 环境变量说明
 
 修改 `docker-compose.yml` 中的环境变量：
 ```yaml
