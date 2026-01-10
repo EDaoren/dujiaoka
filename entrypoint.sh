@@ -16,25 +16,25 @@ cp /app/.env.example /app/.env
 # 生成 APP_KEY（使用 openssl 生成随机密钥）
 APP_KEY="base64:$(openssl rand -base64 32)"
 
-# 替换所有占位符
-sed -i "s/{title}/${APP_NAME:-独角数卡}/g" /app/.env
+# 替换所有占位符（使用 | 作为分隔符避免特殊字符冲突）
+sed -i "s|{title}|${APP_NAME:-独角数卡}|g" /app/.env
 sed -i "s|{app_url}|${APP_URL:-http://localhost:8111}|g" /app/.env
-sed -i "s/{app_key}/${APP_KEY}/g" /app/.env
-sed -i "s/{db_host}/${DB_HOST}/g" /app/.env
-sed -i "s/{db_port}/${DB_PORT:-3306}/g" /app/.env
-sed -i "s/{db_database}/${DB_DATABASE}/g" /app/.env
-sed -i "s/{db_username}/${DB_USERNAME}/g" /app/.env
-sed -i "s/{db_password}/${DB_PASSWORD}/g" /app/.env
-sed -i "s/{redis_host}/${REDIS_HOST}/g" /app/.env
-sed -i "s/{redis_password}/${REDIS_PASSWORD:-null}/g" /app/.env
-sed -i "s/{redis_port}/${REDIS_PORT:-6379}/g" /app/.env
-sed -i "s/{admin_path}/${ADMIN_ROUTE_PREFIX:-admin}/g" /app/.env
+sed -i "s|{app_key}|${APP_KEY}|g" /app/.env
+sed -i "s|{db_host}|${DB_HOST}|g" /app/.env
+sed -i "s|{db_port}|${DB_PORT:-3306}|g" /app/.env
+sed -i "s|{db_database}|${DB_DATABASE}|g" /app/.env
+sed -i "s|{db_username}|${DB_USERNAME}|g" /app/.env
+sed -i "s|{db_password}|${DB_PASSWORD}|g" /app/.env
+sed -i "s|{redis_host}|${REDIS_HOST}|g" /app/.env
+sed -i "s|{redis_password}|${REDIS_PASSWORD:-null}|g" /app/.env
+sed -i "s|{redis_port}|${REDIS_PORT:-6379}|g" /app/.env
+sed -i "s|{admin_path}|${ADMIN_ROUTE_PREFIX:-admin}|g" /app/.env
 
-# 更新其他配置项
-sed -i "s/^APP_ENV=.*/APP_ENV=${APP_ENV:-production}/g" /app/.env
-sed -i "s/^APP_DEBUG=.*/APP_DEBUG=${APP_DEBUG:-false}/g" /app/.env
-sed -i "s/^ADMIN_HTTPS=.*/ADMIN_HTTPS=${APP_HTTPS:-false}/g" /app/.env
-sed -i "s/^DUJIAO_ADMIN_LANGUAGE=.*/DUJIAO_ADMIN_LANGUAGE=${ADMIN_LANGUAGE:-zh_CN}/g" /app/.env
+# 更新其他配置项（同样使用 | 分隔符）
+sed -i "s|^APP_ENV=.*|APP_ENV=${APP_ENV:-production}|g" /app/.env
+sed -i "s|^APP_DEBUG=.*|APP_DEBUG=${APP_DEBUG:-false}|g" /app/.env
+sed -i "s|^ADMIN_HTTPS=.*|ADMIN_HTTPS=${APP_HTTPS:-false}|g" /app/.env
+sed -i "s|^DUJIAO_ADMIN_LANGUAGE=.*|DUJIAO_ADMIN_LANGUAGE=${ADMIN_LANGUAGE:-zh_CN}|g" /app/.env
 
 # 设置权限
 chmod 666 /app/.env
