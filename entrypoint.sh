@@ -115,12 +115,12 @@ chown -R application:application /app/storage/logs || true
 echo "[3/4] 权限设置完成"
 
 # ============================================
-# 第四步：清除缓存并启动服务
+# 第四步：清除配置缓存并启动服务
 # ============================================
-echo "[4/4] 清除应用缓存并启动服务..."
-php artisan config:clear || true
-php artisan cache:clear || true
+echo "[4/4] 清除配置缓存并启动服务..."
+# php artisan config:clear || true  # 注释掉，防止清除 Redis 中的系统配置
 php artisan view:clear || true
+# 注意：不清除应用缓存(cache:clear)，避免清除系统配置
 
 # 检查是否需要启动队列服务
 QUEUE_DRIVER=$(grep "^QUEUE_CONNECTION=" /app/.env | cut -d'=' -f2)
