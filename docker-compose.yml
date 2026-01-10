@@ -16,6 +16,8 @@ services:
       APP_URL: "http://localhost:8111"
       APP_ENV: "production"
       APP_DEBUG: "false"
+
+      # 如果配置https域名，需要配置true
       APP_HTTPS: "false"
 
       # 数据库配置（请修改为你的外部数据库信息）

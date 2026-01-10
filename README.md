@@ -4,134 +4,67 @@
 <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue" alt="license MIT"></a>
 <a href="https://github.com/assimon/dujiaoka/releases/tag/2.0.4"><img src="https://img.shields.io/badge/version-2.0.4-red" alt="version 2.0.4"></a>
 <a href="https://www.php.net/releases/7_4_0.php"><img src="https://img.shields.io/badge/PHP-7.4-lightgrey" alt="php74"></a>
-<a href="https://shang.qq.com/wpa/qunwpa?idkey=37b6b06f7c941dae20dcd5784088905d6461064d7f33478692f0c4215546cee0"><img src="https://img.shields.io/badge/QQ%E7%BE%A4-568679748-green" alt="QQ群：568679748"></a>
 </p>
 
-## 独角数卡
+## 📢 Fork 说明
 
-开源式站长自动化售货解决方案、高效、稳定、快速！
+本仓库 Fork 自 [assimon/dujiaoka](https://github.com/assimon/dujiaoka)
 
-- 框架来自：[laravel/framework](https://github.com/laravel/laravel).
-- 后台管理系统：[laravel-admin](https://laravel-admin.org/).
-- 前端ui [bootstrap](https://getbootstrap.com/).
+**原项目完整说明请查看：** [原版 README](https://github.com/assimon/dujiaoka/blob/master/README.md)
 
-核心贡献者：
-- [iLay1678](https://github.com/iLay1678)
+## ✨ 本 Fork 的改进
 
-模板贡献者：
-- [Julyssn](https://github.com/Julyssn) 模板`luna`作者
-- [bimoe](https://github.com/bimoe) 模板`hyper`作者
+### Docker 自动化部署
+- ✅ **零配置启动**：容器启动时自动初始化数据库，无需访问 `/install` 页面
+- ✅ **配置持久化**：容器重启后自动恢复配置，无需重新安装
+- ✅ **环境变量管理**：所有配置通过 `docker-compose.yml` 统一管理
+- ✅ **增加支付方式**：增加了 linux.do ldc 积分支付
 
-鸣谢以上开源项目及贡献者，排名不分先后.
+## 🚀 Docker 快速开始
 
-## 系统优势
+**1. 克隆并配置**
+```bash
+git clone https://github.com/EDaoren/dujiaoka.git
+cd dujiaoka
+# 编辑 docker-compose.yml，修改数据库和 Redis 配置
+```
 
-采用业界流行的`laravel`框架，安全及稳定性提升。    
-支持`自定义前端模板`功能   
-支持`国际化多语言包`（需自行翻译）  
-代码全部开源，所有扩展包采用composer加载，代码所有内容可溯源！     
-长期技术更新支持！
+**2. 在 MySQL 中创建空数据库**
+```sql
+CREATE DATABASE dujiaoka CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
 
-## 👮‍♂️反诈提醒
-近期有高仿作者telegram实施诈骗的行为，        
-请各位用户擦亮双眼，作者从不私聊任何人提供任何收费形式的技术支持服务！    
-项目是完全开源免费的，完全遵守`MIT开源协议`    
-没有所谓的`技术支持`，`终身技术支持`，`二次开发`等业务，也不参与任何用户的`业务运营`。    
-凡是作者私聊你的全是高仿号诈骗，请仔细核对作者唯一Telegram用户名：`linux0101`     
+**3. 启动容器（会自动初始化）**
+```bash
+docker-compose build
+docker-compose up -d
+```
 
-## 写在前面
-本程序有一定的上手难度（对于小白而言），需要您对linux服务器有基本的认识和操作度   
-且本程序不支持虚拟主机，大概率也不支持windows服务器！  
-如果您连宝塔、phpstudy、AppNode等一键可视化服务器面板也未曾使用或听说过，那么我大概率劝您放弃本程序！  
-如果您觉得部署有难度，建议仔细阅读（仔细！）宝塔视频安装篇教程，里面有保姆级的安装流程和视频教程！   
-认真观看部署教程我可以保证您98%可能性能部署成功！  
-勤动手，多思考，善研究！
+**4. 访问**
+- 前台：`http://localhost:8111`
+- 后台：`http://localhost:8111/admin` (账号：`admin` / 密码：`admin`)
 
-## 使用交流      
-Telegram: [https://t.me/dujiaoka](https://t.me/dujiaoka)    
-关注Telegram官方频道：[https://t.me/dujiaoshuka](https://t.me/dujiaoshuka) (系统更新通知，bug更新，重大事件推送)
+## 📝 配置说明
 
-## 🔥推荐服务器 
-- （🇺🇸美国免备案vps，配置2核2G仅需`20.98$`≈`145RMB`一年/支持支付宝付款）[👉🏻点我直达](https://my.racknerd.com/aff.php?aff=2745&pid=681)
-- （🇺🇸美国至中国最快的云服务器，三网精品CN2，最低仅需`3.5$/月`支持Paypal/USDT/支付宝付款）[👉🏻点我直达](https://www.vmrack.net/?ref_code=5cxGLUcTZhH)
-- (🔥赛博支付【发卡收款好帮手】，支付宝/微信费率5%) [👉结算D0，点我直达](https://t.me/CyberWlD/219)
+修改 `docker-compose.yml` 中的环境变量：
+```yaml
+environment:
+  APP_URL: "http://your-domain.com"  # 你的域名
+  DB_HOST: "your_mysql_host"         # MySQL 地址
+  DB_DATABASE: "dujiaoka"
+  DB_USERNAME: "your_mysql_user"
+  DB_PASSWORD: "your_mysql_password"
+  REDIS_HOST: "your_redis_host"      # Redis 地址
+```
 
-## 界面尝鲜
-【官方unicorn模板】
-![首页.png](https://i.loli.net/2021/09/14/NZIl6s9RXbHwkmA.png)
+## 📚 更多文档
 
-【luna模板】 
-![首页.png](https://i.loli.net/2020/10/24/ElKwJFsQy4a9fZi.png)
+- [原项目完整文档](https://github.com/assimon/dujiaoka/wiki)
+- [支付接口配置](https://github.com/assimon/dujiaoka/wiki/problems#各支付对应配置)
+- [常见问题](https://github.com/assimon/dujiaoka/wiki/problems)
 
-【hyper模板】  
-![首页.png](https://i.loli.net/2021/01/06/nHCSV5PdJIzT6Gy.png)
+## 📄 License
 
-## 安装篇
-- [Linux环境安装](https://github.com/assimon/dujiaoka/wiki/linux_install)
-- [Docker安装](https://github.com/assimon/dujiaoka/wiki/docker_install)
-- [2.x版本宝塔安装教程](https://github.com/assimon/dujiaoka/wiki/2.x_bt_install)
-- [1.x版本宝塔环境安装](https://github.com/assimon/dujiaoka/wiki/1.x_bt_install)
-- [常见问题锦集-你遇到的问题大部分能在这里找到解决！！](https://github.com/assimon/dujiaoka/wiki/problems)
-- [系统升级](https://github.com/assimon/dujiaoka/wiki/update)
-- [各支付对应后台配置](https://github.com/assimon/dujiaoka/wiki/problems#各支付对应配置)
-- [视频教程及工具集合](https://pan.dujiaoka.com)
+本项目遵循原项目的 [MIT license](https://opensource.org/licenses/MIT)
 
-## 支付接口已集成
-- [x] 支付宝当面付
-- [x] 支付宝PC支付
-- [x] 支付宝手机支付
-- [x] [payjs微信扫码](http://payjs.cn).
-- [x] [Paysapi(支付宝/微信)](https://www.paysapi.com/).
-- [x] 码支付(QQ/支付宝/微信)
-- [x] 微信企业扫码支付
-- [x] [Paypal支付(默认美元)](https://www.paypal.com)
-- [x] V免签支付
-- [x] 全网易支付支持(通用彩虹版)
-- [x] [stripe](https://stripe.com/)
-
-## 基本环境要求
-
-- (PHP + PHPCLI) version = 7.4
-- Nginx version >= 1.16
-- MYSQL version >= 5.6
-- Redis (高性能缓存服务)
-- Supervisor (一个python编写的进程管理服务)
-- Composer (PHP包管理器)
-- Linux (Win下未测试，建议直接Linux)
-
-## PHP环境要求
-
-星号(*)为必须执行的要求，其他为建议内容
-
-- **\*安装`fileinfo`扩展**
-- **\*安装`redis`扩展**
-- **\*终端需支持`php-cli`，测试`php -v`(版本必须一致)**
-- **\*需要开启的函数：`putenv`，`proc_open`，`pcntl_signal`，`pcntl_alarm`**
-- 安装`opcache`扩展
-
-## 默认后台
-
-- 后台路径 `/admin`
-- 默认管理员账号 `admin`
-- 默认管理员密码 `admin`
-
-## 免责声明
-
-独角数卡程序是免费开源的产品，仅用于学习交流使用！       
-不可用于任何违反`中华人民共和国(含台湾省)`或`使用者所在地区`法律法规的用途。      
-因为作者即本人仅完成代码的开发和开源活动`(开源即任何人都可以下载使用)`，从未参与用户的任何运营和盈利活动。    
-且不知晓用户后续将`程序源代码`用于何种用途，故用户使用过程中所带来的任何法律责任即由用户自己承担。      
-
-
-## Thanks
-
-Thanks JetBrains for the free open source license
-
-<a href="https://www.jetbrains.com/?from=gev" target="_blank">
-	<img src="https://i.loli.net/2021/02/08/2aejB8rwNmQR7FG.png" width = "260" align=center />
-</a>
-
-
-## License
-
-独角数卡 DJK Inc [MIT license](https://opensource.org/licenses/MIT).
+感谢原作者 [assimon](https://github.com/assimon) 的开源贡献！
