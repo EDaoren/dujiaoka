@@ -13,7 +13,8 @@ return [
     'templates' => [
         'unicorn' => '官方[unicorn-独角兽]',
         'luna' => 'Luna[Julyssn]',
-        'hyper' => 'hyper[Bimoe]'
+        'hyper' => 'hyper[Bimoe]',
+        'edaoren' => 'EDaoren[EDaoren]'
     ],
     // 语言
     'language' => [
