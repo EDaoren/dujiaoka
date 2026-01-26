@@ -6,7 +6,7 @@ body {
     min-height: 100vh;
 }
 
-/* ========== 闲鱼风格统一容器 ========== */
+/* ========== 闲鱼风格统一容器（分类+商品） ========== */
 
 .xianyu-content-wrapper {
     background: #FFFFFF;
@@ -17,21 +17,21 @@ body {
     overflow: hidden;
 }
 
-/* ========== 公告横幅 - 闲鱼风格 ========== */
+/* ========== 公告横幅 - 独立显示 ========== */
 
 .xianyu-notice {
-    border-bottom: 1px solid #F5F5F5;
+    margin-top: 12px;
 }
 
 .notice-wrapper {
     display: flex;
     align-items: center;
     gap: 10px;
-    background: transparent;
-    border-radius: 0;
+    background: #FFFFFF;
+    border-radius: 8px;
     padding: 12px 16px;
-    box-shadow: none;
-    border: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border: 1px solid #E8E8E8;
     position: relative;
     overflow: hidden;
 }
