@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="/assets/edaoren/css/base.css">
     <link rel="stylesheet" href="/assets/edaoren/css/common.css">
     <link rel="stylesheet" href="/assets/edaoren/css/index.css">
+    <link rel="stylesheet" href="/assets/edaoren/css/buy.css">
 </head>
 @include('edaoren.layouts._nav')
 @yield('content')
