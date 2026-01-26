@@ -69,13 +69,13 @@
                                     <hr class="my-4">
 
                                     <div class="d-flex justify-content-between mb-3 align-items-center">
-                                        <span class="fs-5">{{ __('order.fields.actual_price') }}</span>
-                                        <span class="fs-4 fw-bold text-danger">{{ __('dujiaoka.money_symbol') }}{{ $actual_price }}</span>
+                                        <span class="text-muted">{{ __('order.fields.actual_price') }}</span>
+                                        <span class="fs-5 fw-bold text-danger">{{ __('dujiaoka.money_symbol') }}{{ $actual_price }}</span>
                                     </div>
 
                                     <div class="d-flex justify-content-between mb-4 align-items-center">
                                         <span class="text-muted">{{ __('dujiaoka.payment_method') }}</span>
-                                        <span class="fw-bold text-dark fs-5">{{ $pay['pay_name'] }}</span>
+                                        <span class="fw-bold text-dark">{{ $pay['pay_name'] }}</span>
                                     </div>
 
                                     <div class="text-muted small text-center mb-4">
