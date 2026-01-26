@@ -349,10 +349,18 @@ body {
     transition: opacity 0.3s ease;
     min-height: 400px;
     /* 预留最小高度,避免布局跳动 */
+    /* 加载前脱离文档流,防止把骨架屏挤下去，但保持可见性供 Masonry 计算 */
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
 }
 
 .masonry-grid.masonry-loaded {
     opacity: 1;
+    position: relative;
+    /* 恢复定位 */
+    z-index: 1;
 }
 
 /* 骨架屏加载动画 */
