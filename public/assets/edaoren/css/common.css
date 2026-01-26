@@ -361,6 +361,7 @@ body {
     display: flex;
     flex-direction: column;
     padding-top: 0;
+    margin-bottom: 20px;
 }
 
 /* 卡片通用样式 */
