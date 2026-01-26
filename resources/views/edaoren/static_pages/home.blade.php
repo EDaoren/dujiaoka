@@ -1,88 +1,86 @@
 @extends('edaoren.layouts.default')
 @section('content')
-    <!-- 公告横幅 - 闲鱼风格 -->
-    <div class="xianyu-notice-banner">
+    <!-- main start -->
+    <section class="main-container">
         <div class="container">
-            <div class="notice-wrapper">
-                <!-- 公告图标 -->
-                <div class="notice-icon">
-                    <i class="ali-icon">&#xe667;</i>
-                </div>
-
-                <!-- 公告标签 -->
-                <div class="notice-label">
-                    {{ __('dujiaoka.site_announcement') }}
-                </div>
-
-                <!-- 公告内容轮播 -->
-                <div class="notice-carousel">
-                    <div id="noticeCarousel" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            @php
-                                $noticeContent = dujiaoka_config_get('notice');
-                                $notices = explode('|', $noticeContent);
-                                if (count($notices) == 1) {
-                                    $notices = explode("\n", $noticeContent);
-                                }
-                                $notices = array_filter(array_map('trim', $notices));
-                                if (empty($notices)) {
-                                    $notices = [$noticeContent];
-                                }
-                            @endphp
-
-                            @foreach($notices as $index => $notice)
-                            <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                                <div class="notice-content">
-                                    {!! $notice !!}
-                                </div>
-                            </div>
-                            @endforeach
+            <!-- 闲鱼风格统一容器 -->
+            <div class="xianyu-content-wrapper">
+                <!-- 公告横幅 -->
+                <div class="xianyu-notice">
+                    <div class="notice-wrapper">
+                        <!-- 公告图标 -->
+                        <div class="notice-icon">
+                            <i class="ali-icon">&#xe667;</i>
                         </div>
 
-                        @if(count($notices) > 1)
-                        <button class="carousel-control-prev" type="button"
-                                data-bs-target="#noticeCarousel" data-bs-slide="prev">
-                            <i class="ali-icon">&#xe60d;</i>
+                        <!-- 公告标签 -->
+                        <div class="notice-label">
+                            {{ __('dujiaoka.site_announcement') }}
+                        </div>
+
+                        <!-- 公告内容轮播 -->
+                        <div class="notice-carousel">
+                            <div id="noticeCarousel" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    @php
+                                        $noticeContent = dujiaoka_config_get('notice');
+                                        $notices = explode('|', $noticeContent);
+                                        if (count($notices) == 1) {
+                                            $notices = explode("\n", $noticeContent);
+                                        }
+                                        $notices = array_filter(array_map('trim', $notices));
+                                        if (empty($notices)) {
+                                            $notices = [$noticeContent];
+                                        }
+                                    @endphp
+
+                                    @foreach($notices as $index => $notice)
+                                    <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                                        <div class="notice-content">
+                                            {!! $notice !!}
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+
+                                @if(count($notices) > 1)
+                                <button class="carousel-control-prev" type="button"
+                                        data-bs-target="#noticeCarousel" data-bs-slide="prev">
+                                    <i class="ali-icon">&#xe60d;</i>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                        data-bs-target="#noticeCarousel" data-bs-slide="next">
+                                    <i class="ali-icon">&#xe60e;</i>
+                                </button>
+                                @endif
+                            </div>
+                        </div>
+
+                        <!-- 关闭按钮 -->
+                        <button class="notice-close" type="button" aria-label="关闭">
+                            <i class="ali-icon">&#xe60a;</i>
                         </button>
-                        <button class="carousel-control-next" type="button"
-                                data-bs-target="#noticeCarousel" data-bs-slide="next">
-                            <i class="ali-icon">&#xe60e;</i>
-                        </button>
-                        @endif
                     </div>
                 </div>
 
-                <!-- 关闭按钮 -->
-                <button class="notice-close" type="button" aria-label="关闭">
-                    <i class="ali-icon">&#xe60a;</i>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- main start -->
-    <section class="main-container">
-        <!-- category start -->
-        <div class="category">
-            <div class="container">
-                <div class="category-menus">
-                    <ul class="nav nav-pills justify-content-center">
-                        <li class="nav-item">
-                            <a href="#group-all" data-bs-toggle="tab" class="btn btn-outline-secondary active">{{ __('dujiaoka.group_all') }}</a>
-                        </li>
-                        @foreach($data as  $index => $group)
+                <!-- 分类导航 -->
+                <div class="category">
+                    <div class="category-menus">
+                        <ul class="nav nav-pills">
                             <li class="nav-item">
-                                <a href="#group-{{ $group['id'] }}" data-bs-toggle="tab" class="btn btn-outline-secondary">{{ $group['gp_name'] }}</a>
+                                <a href="#group-all" data-bs-toggle="tab" class="btn btn-outline-secondary active">{{ __('dujiaoka.group_all') }}</a>
                             </li>
-                        @endforeach
-                    </ul>
+                            @foreach($data as  $index => $group)
+                                <li class="nav-item">
+                                    <a href="#group-{{ $group['id'] }}" data-bs-toggle="tab" class="btn btn-outline-secondary">{{ $group['gp_name'] }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <!-- category end -->
-        <!-- goods start -->
-        <div class="goods">
-            <div class="container">
+
+                <!-- 商品列表 -->
+                <div class="goods">
                 <div class="goods-list mb-5">
                     <div id="goodsTabContent" class="tab-content">
 
@@ -183,11 +181,9 @@
                         @endforeach
                     </div>
                 </div>
-
             </div>
+            <!-- 闲鱼风格统一容器结束 -->
         </div>
-        <!-- goods end -->
-
     </section>
     <!-- main end -->
 
