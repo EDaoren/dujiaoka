@@ -361,38 +361,6 @@ body {
     display: flex;
     flex-direction: column;
     padding-top: 0;
-    /* 统一宽度限制 */
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-left: 15px;
-    padding-right: 15px;
-    min-height: 60vh;
-    /* 最小高度防止空白 */
-}
-
-/* 错误/提示页面优化 */
-.err_title,
-.err_content,
-.err_but {
-    text-align: center;
-}
-
-.err_title {
-    margin-top: 60px;
-    font-size: 24px;
-    color: var(--text-main);
-    font-weight: 600;
-}
-
-.err_content {
-    margin: 20px 0 40px;
-    color: var(--text-secondary);
-}
-
-.err_but .btn {
-    padding: 10px 30px;
-    border-radius: 50px;
 }
 
 /* 卡片通用样式 */
