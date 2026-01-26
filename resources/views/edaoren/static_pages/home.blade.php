@@ -65,36 +65,17 @@
         <!-- category start -->
         <div class="category">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3 class="text-center">
-                                <span style="vertical-align: inherit;">
-                                    {{ __('dujiaoka.equipment.what_do_you_need_today') }}
-                                </span>
-                        </h3>
-                        <div class="separator"></div>
-                        <p class="lead text-center">
-                                <span style="vertical-align: inherit;">
-                                    {{ __('dujiaoka.equipment.self_promotion') }}
-                                </span>
-                        </p>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="category-menus">
-                                <ul class="nav nav-pills  justify-content-center">
-                                    <li class="nav-item">
-                                        <a href="#group-all" data-bs-toggle="tab" class="btn btn-outline-secondary active">{{ __('dujiaoka.group_all') }}</a>
-                                    </li>
-                                    @foreach($data as  $index => $group)
-                                        <li class="nav-item">
-                                            <a href="#group-{{ $group['id'] }}" data-bs-toggle="tab" class="btn btn-outline-secondary">{{ $group['gp_name'] }}</a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                        </div>
-                    </div>
-
-
+                <div class="category-menus">
+                    <ul class="nav nav-pills justify-content-center">
+                        <li class="nav-item">
+                            <a href="#group-all" data-bs-toggle="tab" class="btn btn-outline-secondary active">{{ __('dujiaoka.group_all') }}</a>
+                        </li>
+                        @foreach($data as  $index => $group)
+                            <li class="nav-item">
+                                <a href="#group-{{ $group['id'] }}" data-bs-toggle="tab" class="btn btn-outline-secondary">{{ $group['gp_name'] }}</a>
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>
