@@ -708,3 +708,20 @@
     line-height: 40px;
     font-size: 13px;
 }
+
+/* 修复订单查询页面卡片边距问题 - 覆盖 m-3 的影响 */
+.main-container .card.m-3 {
+    margin: 1rem 0 !important;
+    /* 保留垂直 margin，去除水平 margin */
+    width: 100%;
+    /* 确保占满宽度 */
+    border-radius: 0;
+    /* 如果需要全宽，可能也需要去掉圆角？不，先保留 */
+}
+
+@media (min-width: 768px) {
+    .main-container .card.m-3 {
+        border-radius: 12px;
+        /* 大屏保留圆角 */
+    }
+}
