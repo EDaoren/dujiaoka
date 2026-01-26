@@ -251,6 +251,9 @@
                         transitionDuration: '0.3s'
                     });
 
+                    // 布局完成后显示
+                    $grid.addClass('masonry-loaded');
+
                     // 保存 Masonry 实例
                     $grid.data('masonry', msnry);
                 });
@@ -271,6 +274,7 @@
                     if (msnry) {
                         setTimeout(function() {
                             msnry.layout();
+                            $targetGrid.addClass('masonry-loaded');
                         }, 100);
                     } else {
                         initMasonry($targetGrid);
