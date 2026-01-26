@@ -88,8 +88,13 @@
                             <div class="masonry-grid">
                                 @foreach($data as  $index => $group)
                                     @foreach($group['goods'] as $goods)
-                                        <div class="goods-item">
+                                        <div class="goods-item {{ $goods['in_stock'] <= 0 ? 'out-of-stock' : '' }}">
                                             <div class="card position-relative">
+                                                @if($goods['in_stock'] <= 0)
+                                                    <div class="out-of-stock-overlay">
+                                                        <span class="out-of-stock-badge">{{ __('dujiaoka.out_of_stock') }}</span>
+                                                    </div>
+                                                @endif
                                                 @if($goods['type'] == \App\Models\Goods::AUTOMATIC_DELIVERY)
                                                     <span class="badge bg-success position-absolute top-0 start-0">
                                             <i class="ali-icon">&#xe7db;</i>
@@ -119,10 +124,17 @@
                                                         </button>
                                                     @endif
                                                     <h6 class="mt-2"><small class="text-muted">{{__('goods.fields.in_stock')}}：{{ $goods['in_stock'] }}</small></h6>
-                                                    <a href="{{ url("/buy/{$goods['id']}") }}" class="btn btn-primary">
-                                                        <i class="ali-icon">&#xe7d8;</i>
-                                                        {{ __('dujiaoka.order_now') }}
-                                                    </a>
+                                                    @if($goods['in_stock'] > 0)
+                                                        <a href="{{ url("/buy/{$goods['id']}") }}" class="btn btn-primary">
+                                                            <i class="ali-icon">&#xe7d8;</i>
+                                                            {{ __('dujiaoka.order_now') }}
+                                                        </a>
+                                                    @else
+                                                        <button class="btn btn-primary" disabled>
+                                                            <i class="ali-icon">&#xe7d8;</i>
+                                                            {{ __('dujiaoka.out_of_stock') }}
+                                                        </button>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -137,8 +149,13 @@
                             <div class="tab-pane fade" id="group-{{ $group['id'] }}">
                                 <div class="masonry-grid">
                                     @foreach($group['goods'] as $goods)
-                                        <div class="goods-item">
+                                        <div class="goods-item {{ $goods['in_stock'] <= 0 ? 'out-of-stock' : '' }}">
                                             <div class="card position-relative">
+                                                @if($goods['in_stock'] <= 0)
+                                                    <div class="out-of-stock-overlay">
+                                                        <span class="out-of-stock-badge">{{ __('dujiaoka.out_of_stock') }}</span>
+                                                    </div>
+                                                @endif
                                                 @if($goods['type'] == \App\Models\Goods::AUTOMATIC_DELIVERY)
                                                     <span class="badge bg-success position-absolute top-0 start-0">
                                             <i class="ali-icon">&#xe7db;</i>
@@ -168,10 +185,17 @@
                                                             </button>
                                                         @endif
                                                     <h6 class="mt-2"><small class="text-muted">{{__('goods.fields.in_stock')}}：{{ $goods['in_stock'] }}</small></h6>
-                                                    <a href="{{ url("/buy/{$goods['id']}") }}" class="btn btn-primary">
-                                                        <i class="ali-icon">&#xe7d8;</i>
-                                                        {{ __('dujiaoka.order_now') }}
-                                                    </a>
+                                                    @if($goods['in_stock'] > 0)
+                                                        <a href="{{ url("/buy/{$goods['id']}") }}" class="btn btn-primary">
+                                                            <i class="ali-icon">&#xe7d8;</i>
+                                                            {{ __('dujiaoka.order_now') }}
+                                                        </a>
+                                                    @else
+                                                        <button class="btn btn-primary" disabled>
+                                                            <i class="ali-icon">&#xe7d8;</i>
+                                                            {{ __('dujiaoka.out_of_stock') }}
+                                                        </button>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>

@@ -312,6 +312,47 @@ body {
     padding: 16px;
 }
 
+/* 无货商品样式 */
+.goods-item.out-of-stock {
+    opacity: 0.6;
+}
+
+.goods-item.out-of-stock .card {
+    position: relative;
+}
+
+.out-of-stock-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.out-of-stock-badge {
+    background: #FF4D4F;
+    color: #FFFFFF;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(255, 77, 79, 0.3);
+}
+
+.goods-item.out-of-stock .btn-primary:disabled {
+    background: #D9D9D9;
+    border-color: #D9D9D9;
+    color: #FFFFFF;
+    cursor: not-allowed;
+    opacity: 1;
+}
+
 /* ========== 瀑布流布局 - 闲鱼风格 ========== */
 
 .masonry-grid {
