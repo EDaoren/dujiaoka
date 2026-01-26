@@ -9,14 +9,16 @@
     border: 1px solid var(--border-color);
     border-radius: 12px;
     box-shadow: var(--shadow-sm);
-    margin-top: 16px;
+    margin-top: 10px;
+    /* 减小间距 */
     overflow: hidden;
 }
 
 /* ========== 公告横幅 - 独立显示 ========== */
 
 .xianyu-notice {
-    margin-top: 16px;
+    margin-top: 10px;
+    /* 减小间距 */
 }
 
 .notice-wrapper {
@@ -190,7 +192,7 @@
 
 /* 分类区域 */
 .category {
-    padding: 16px 20px;
+    padding: 12px 20px;
     border-bottom: 1px solid var(--border-color);
     background: var(--bg-card);
 }
@@ -199,7 +201,7 @@
     font-weight: 700;
     color: var(--text-main);
     font-size: 2rem;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     letter-spacing: -0.5px;
 }
 
@@ -208,6 +210,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
+    /* 使用 gap 代替 margin */
 }
 
 .category-menus li {
@@ -358,10 +361,13 @@
     clear: both;
 }
 
-/* 商品卡片样式 */
+/* 商品卡片样式 - 修复版 */
 .goods-item {
     width: calc(20% - 16px);
     margin-bottom: 16px;
+    display: flex;
+    /* 让子元素 card 能够占满高度 */
+    flex-direction: column;
 }
 
 .goods-item .card {
@@ -372,6 +378,11 @@
     box-shadow: var(--shadow-sm);
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     height: 100%;
+    /* 占满高度 */
+    position: relative;
+    /* 为绝对定位的标签提供参照 */
+    display: flex;
+    flex-direction: column;
 }
 
 .goods-item .card:hover {
@@ -382,20 +393,26 @@
 
 .goods-item .card-img-top {
     width: 100%;
-    height: auto;
-    object-fit: cover;
+    height: 180px;
+    /* 固定图片高度 */
+    object-fit: contain;
+    /* 完整显示 */
+    background: transparent;
     border-bottom: 1px solid transparent;
-    /* 移除原来的边框，或者用透明 */
     transition: all 0.2s ease;
 }
 
 .goods-item .badge {
+    position: absolute;
+    /* 强制绝对定位 */
+    top: 0;
+    left: 0;
     border-radius: 0 0 8px 0;
-    padding: 4px 8px;
+    padding: 6px 12px;
     font-size: 12px;
     font-weight: 500;
     z-index: 10;
-    box-shadow: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .goods-item .badge.bg-success {
@@ -410,6 +427,10 @@
     padding: 16px;
     background: var(--bg-card);
     transition: background 0.2s ease;
+    flex: 1;
+    /* 占据剩余空间 */
+    display: flex;
+    flex-direction: column;
 }
 
 .goods-item .card-title {
@@ -429,7 +450,6 @@
     border: none;
     background: transparent;
     color: #FF6A00;
-    /* 保持价格橙色，更有吸引力 */
     font-weight: 700;
     font-size: 18px;
     border-radius: 0;
@@ -471,7 +491,8 @@
     font-weight: 500;
     font-size: 14px;
     width: 100%;
-    margin-top: 12px;
+    margin-top: auto;
+    /* 底部对齐 */
     box-shadow: 0 2px 4px rgba(255, 184, 0, 0.2);
 }
 
@@ -487,7 +508,7 @@
     margin-top: 4px;
 }
 
-/* 响应式布局 */
+/* 响应式布局 - 商品列表 */
 @media (max-width: 1200px) {
     .goods-item {
         width: calc(25% - 16px);
@@ -631,7 +652,7 @@
     padding-top: 8px;
 }
 
-/* 响应式优化 */
+/* 响应式优化 - 订单 */
 @media (max-width: 768px) {
     .good-card .card-title {
         font-size: 18px;
