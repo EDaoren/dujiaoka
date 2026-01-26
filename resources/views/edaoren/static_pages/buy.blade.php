@@ -157,25 +157,19 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
             </div>
 
             <!-- 商品描述 -->
-                <div class="row justify-content-center">
-                    <div class="col-12 col-lg-10">
-                        <div class="card mt-3 mb-3 description-card">
-                            <div class="card-header">
-                                <h5 class="mb-0">
-                                    <i class="ali-icon">&#xe667;</i> {{ __('goods.fields.description') }}
-                                </h5>
-                            </div>
-                            <div class="card-body">
-                                {!! $description !!}
-                            </div>
-                        </div>
-                    </div>
+            <div class="card mt-3 mb-3 description-card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="ali-icon">&#xe667;</i> {{ __('goods.fields.description') }}
+                    </h5>
                 </div>
+                <div class="card-body">
+                    {!! $description !!}
+                </div>
+            </div>
         </div>
 
     </section>
