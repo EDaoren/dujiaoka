@@ -10,17 +10,6 @@
                                     <div class="product-image-wrapper">
                                         <img src="{{ picture_ulr($picture) }}"
                                              class="product-image" alt="{{ $gd_name }}">
-                                        @if($type == \App\Models\Goods::AUTOMATIC_DELIVERY)
-                                            <span class="badge bg-success position-absolute top-0 start-0 m-3">
-                                                <i class="ali-icon">&#xe7db;</i>
-                                                {{ __('goods.fields.automatic_delivery') }}
-                                            </span>
-                                        @else
-                                            <span class="badge bg-warning position-absolute top-0 start-0 m-3">
-                                                <i class="ali-icon">&#xe74b;</i>
-                                                {{ __('goods.fields.manual_processing') }}
-                                            </span>
-                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-md-7">
@@ -46,6 +35,14 @@
                                             <div class="info-item">
                                                 <span class="info-label">已售：</span>
                                                 <span class="info-value">{{ $sales_volume }}</span>
+                                            </div>
+                                            <div class="info-item">
+                                                <span class="info-label">类型：</span>
+                                                @if($type == \App\Models\Goods::AUTOMATIC_DELIVERY)
+                                                    <span class="badge bg-success">{{ __('goods.fields.automatic_delivery') }}</span>
+                                                @else
+                                                    <span class="badge bg-warning">{{ __('goods.fields.manual_processing') }}</span>
+                                                @endif
                                             </div>
                                             @if($buy_limit_num > 0)
                                                 <div class="info-item">
