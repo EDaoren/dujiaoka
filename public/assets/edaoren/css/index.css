@@ -56,9 +56,12 @@ body {
 }
 
 @keyframes pulse {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(1.05);
     }
@@ -598,6 +601,7 @@ body {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -609,24 +613,154 @@ body {
     animation-fill-mode: both;
 }
 
-.goods .col:nth-child(1) { animation-delay: 0.1s; }
-.goods .col:nth-child(2) { animation-delay: 0.2s; }
-.goods .col:nth-child(3) { animation-delay: 0.3s; }
-.goods .col:nth-child(4) { animation-delay: 0.4s; }
-.goods .col:nth-child(5) { animation-delay: 0.5s; }
+.goods .col:nth-child(1) {
+    animation-delay: 0.1s;
+}
 
-/* 订单信息页面 */
+.goods .col:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.goods .col:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.goods .col:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.goods .col:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+/* ========== 订单查询页面优化 ========== */
+
+/* 订单查询卡片 */
 .good-card .card {
     border: none;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+    background: #FFFFFF;
+    transition: all 0.3s ease;
+}
+
+.good-card .card:hover {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.good-card .card-body {
+    padding: 20px;
 }
 
 .good-card .card-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 8px;
+}
+
+.good-card h6 small {
+    font-size: 12px;
+    color: #999999;
+}
+
+/* Tab 导航样式 - 与首页分类导航一致 */
+.good-card .nav-pills {
+    border-bottom: 1px solid #F0F0F0;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+}
+
+.good-card .nav-pills .nav-item {
+    margin-right: 8px;
+    margin-bottom: 8px;
+}
+
+.good-card .nav-pills .nav-link {
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-weight: 500;
+    font-size: 13px;
+    border: 1px solid #E8E8E8;
+    background: #FFFFFF;
+    color: #666666;
+    transition: all 0.2s ease;
+}
+
+.good-card .nav-pills .nav-link:hover {
+    background: #FFF9E6;
+    border-color: #FFB800;
     color: #FFB800;
-    font-weight: 700;
+}
+
+.good-card .nav-pills .nav-link.active {
+    background: #FFB800;
+    border-color: #FFB800;
+    color: #FFFFFF;
+}
+
+/* 表单标签 */
+.good-card .col-form-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #333333;
+    margin-bottom: 6px;
+}
+
+/* 表单控件 - 覆盖 form-control-sm 样式 */
+.good-card .form-control-sm {
+    border-radius: 6px;
+    border: 1px solid #E8E8E8;
+    padding: 8px 12px;
+    font-size: 13px;
+    transition: all 0.2s ease;
+}
+
+.good-card .form-control-sm:focus {
+    border-color: #FFB800;
+    box-shadow: 0 0 0 3px rgba(255, 184, 0, 0.1);
+}
+
+/* 搜索按钮 - 与商品详情页一致 */
+.good-card .btn-outline-primary {
+    background: transparent;
+    border: 2px solid #FFB800;
+    color: #FFB800;
+    font-weight: 500;
+    font-size: 13px;
+    padding: 8px 20px;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+}
+
+.good-card .btn-outline-primary:hover {
+    background: #FFB800;
+    border-color: #FFB800;
+    color: #FFFFFF;
+}
+
+.good-card .btn-outline-primary:active,
+.good-card .btn-outline-primary:focus {
+    background: #E6A600;
+    border-color: #E6A600;
+    color: #FFFFFF;
+}
+
+/* Tab 内容区域 */
+.good-card .tab-content {
+    padding-top: 8px;
+}
+
+/* 响应式优化 */
+@media (max-width: 768px) {
+    .good-card .card-title {
+        font-size: 18px;
+    }
+
+    .good-card .nav-pills .nav-link {
+        font-size: 12px;
+        padding: 5px 12px;
+    }
 }
 
 /* 搜索框样式 */
