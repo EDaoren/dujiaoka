@@ -360,7 +360,7 @@ body {
     flex: 1 0 auto;
     display: flex;
     flex-direction: column;
-    padding-top: 20px;
+    padding-top: 0;
 }
 
 /* 卡片通用样式 */
