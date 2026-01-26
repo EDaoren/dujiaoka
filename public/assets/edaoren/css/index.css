@@ -312,7 +312,7 @@ body {
     padding: 16px;
 }
 
-/* 无货商品样式 - 优化版 */
+/* 无货商品样式 - 简洁版 */
 .goods-item.out-of-stock .card {
     position: relative;
     filter: grayscale(30%);
@@ -321,25 +321,6 @@ body {
 
 .goods-item.out-of-stock .card-img-top {
     opacity: 0.5;
-}
-
-.out-of-stock-overlay {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    z-index: 10;
-    pointer-events: none;
-}
-
-.out-of-stock-badge {
-    background: linear-gradient(135deg, #FF6B6B 0%, #FF5252 100%);
-    color: #FFFFFF;
-    padding: 4px 12px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: 600;
-    box-shadow: 0 2px 8px rgba(255, 82, 82, 0.3);
-    display: inline-block;
 }
 
 .goods-item.out-of-stock .btn-primary:disabled {

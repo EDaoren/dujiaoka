@@ -90,11 +90,6 @@
                                     @foreach($group['goods'] as $goods)
                                         <div class="goods-item {{ $goods['in_stock'] <= 0 ? 'out-of-stock' : '' }}">
                                             <div class="card position-relative">
-                                                @if($goods['in_stock'] <= 0)
-                                                    <div class="out-of-stock-overlay">
-                                                        <span class="out-of-stock-badge">{{ __('dujiaoka.out_of_stock') }}</span>
-                                                    </div>
-                                                @endif
                                                 @if($goods['type'] == \App\Models\Goods::AUTOMATIC_DELIVERY)
                                                     <span class="badge bg-success position-absolute top-0 start-0">
                                             <i class="ali-icon">&#xe7db;</i>
@@ -132,7 +127,7 @@
                                                     @else
                                                         <button class="btn btn-primary" disabled>
                                                             <i class="ali-icon">&#xe7d8;</i>
-                                                            {{ __('dujiaoka.out_of_stock') }}
+                                                            已售罄
                                                         </button>
                                                     @endif
                                                 </div>
@@ -151,11 +146,6 @@
                                     @foreach($group['goods'] as $goods)
                                         <div class="goods-item {{ $goods['in_stock'] <= 0 ? 'out-of-stock' : '' }}">
                                             <div class="card position-relative">
-                                                @if($goods['in_stock'] <= 0)
-                                                    <div class="out-of-stock-overlay">
-                                                        <span class="out-of-stock-badge">{{ __('dujiaoka.out_of_stock') }}</span>
-                                                    </div>
-                                                @endif
                                                 @if($goods['type'] == \App\Models\Goods::AUTOMATIC_DELIVERY)
                                                     <span class="badge bg-success position-absolute top-0 start-0">
                                             <i class="ali-icon">&#xe7db;</i>
@@ -193,7 +183,7 @@
                                                     @else
                                                         <button class="btn btn-primary" disabled>
                                                             <i class="ali-icon">&#xe7d8;</i>
-                                                            {{ __('dujiaoka.out_of_stock') }}
+                                                            已售罄
                                                         </button>
                                                     @endif
                                                 </div>
