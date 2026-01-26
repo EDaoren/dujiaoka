@@ -376,6 +376,8 @@
     padding: 20px 0;
     margin-top: 0;
     border-top: 1px solid #E8E8E8;
+    position: relative;
+    z-index: 10;
 }
 
 .footer p {
