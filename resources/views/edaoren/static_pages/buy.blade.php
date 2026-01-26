@@ -148,8 +148,8 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-12 mt-3">
-                                                        <button type="submit" id="submit" class="btn btn-primary w-100 rounded-pill shadow-sm">
+                                                    <div class="col-12 mt-3 text-end">
+                                                        <button type="submit" id="submit" class="btn btn-primary rounded-pill shadow-sm px-5 py-2">
                                                             <i class="ali-icon">&#xe7d8;</i> {{ __('dujiaoka.order_now') }}
                                                         </button>
                                                     </div>
@@ -163,13 +163,13 @@
             </div>
 
             <!-- 商品描述 -->
-            <div class="card mt-3 mb-3 description-card">
-                <div class="card-header">
-                    <h5 class="mb-0">
+            <div class="card mt-3 mb-3 description-card border-0 shadow-sm">
+                <div class="card-header bg-white border-bottom-0 pt-3 ps-3">
+                    <h6 class="mb-0 fw-bold">
                         <i class="ali-icon">&#xe667;</i> {{ __('goods.fields.description') }}
-                    </h5>
+                    </h6>
                 </div>
-                <div class="card-body">
+                <div class="card-body pt-0 pb-3 ps-3 pe-3 small text-muted">
                     {!! $description !!}
                 </div>
             </div>
@@ -197,7 +197,6 @@
     <!-- Modal end -->
 @stop
 @section('js')
-<script src="/assets/edaoren/js/bootstrap-input-spinner.js"></script>
 <script>
             @if(!empty($buy_prompt))
             var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'))
@@ -205,7 +204,7 @@
                 myModal.show()
             });
             @endif
-            $("input[type='number']").inputSpinner();
+            // $("input[type='number']").inputSpinner(); 
             $('#submit').click(function(){
                 if($("input[name='by_amount']").val() > {{ $in_stock }}){
                     {{-- 数量不允许大于库存 --}}
