@@ -141,6 +141,21 @@
                                                     @endforeach
                                  @endforeach
                             </div>
+                            <!-- 骨架屏加载动画 -->
+                            <div class="skeleton-loader">
+                                @for($i=0; $i<8; $i++)
+                                    <div class="skeleton-card">
+                                        <div class="skeleton-image"></div>
+                                        <div class="skeleton-content">
+                                            <div class="skeleton-title"></div>
+                                            <div class="skeleton-buttons">
+                                                <div class="skeleton-button"></div>
+                                                <div class="skeleton-button"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endfor
+                            </div>
                         </div>
 
 
@@ -200,6 +215,21 @@
                                             </div>
                                         </div>
                                     @endforeach
+                                </div>
+                                <!-- 骨架屏加载动画 -->
+                                <div class="skeleton-loader">
+                                    @for($i=0; $i<8; $i++)
+                                        <div class="skeleton-card">
+                                            <div class="skeleton-image"></div>
+                                            <div class="skeleton-content">
+                                                <div class="skeleton-title"></div>
+                                                <div class="skeleton-buttons">
+                                                    <div class="skeleton-button"></div>
+                                                    <div class="skeleton-button"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endfor
                                 </div>
                             </div>
                         @endforeach
