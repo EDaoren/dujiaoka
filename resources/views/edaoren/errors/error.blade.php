@@ -7,23 +7,19 @@
             <div class="container">
                 <div class="good-card">
                     <div class="row justify-content-center">
-                        <div class="card m-3 border-0">
-                            <div class="card-body p-4">
-                                <h3 class="card-title ali-icon">&#xe651; {{ $title }}： </h3>
-                                <h6>
-                                    <small class="text-muted">似乎遇到了一点问题~</small>
-                                </h6>
-                                <div class="err-message text-center p-3">
-                                    <h5>
-                                        {{ $content }}
-                                    </h5>
-                                </div>
-                                <div class="col-12 mt-3 text-center">
-                                    @if(!$url)
-                                        <a href="javascript:history.back(-1);"  class="btn btn-outline-dark">{{ __('dujiaoka.callback') }}</a>
-                                    @else
-                                        <a href="{{ $url }}"  class="btn btn-outline-dark">{{ __('dujiaoka.callback') }}</a>
-                                    @endif
+                        <div class="col-12 col-md-8">
+                            <div class="card mt-3 border-0 shadow-sm">
+                                <div class="card-body text-center p-5">
+                                    <h2 class="mb-3">😣</h2>
+                                    <h4 class="mb-3">{{ $title }}</h4>
+                                    <p class="text-muted mb-4">{{ $content }}</p>
+                                    <div class="mt-4">
+                                        @if(!$url)
+                                            <a href="javascript:history.back(-1);" class="btn btn-outline-primary rounded-pill px-4">{{ __('dujiaoka.callback') }}</a>
+                                        @else
+                                            <a href="{{ $url }}" class="btn btn-outline-primary rounded-pill px-4">{{ __('dujiaoka.callback') }}</a>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>

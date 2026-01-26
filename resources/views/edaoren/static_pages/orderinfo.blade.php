@@ -9,8 +9,8 @@
                     <div class="card mt-3">
                         <div class="card-body text-center p-5">
                             <h2 class="mb-3">😔</h2>
-                            <h4 class="mb-3">{{ __('dujiaoka.prompt.order_not_found') ?? '未查询到相关订单' }}</h4>
-                            <p class="text-muted">{{ __('dujiaoka.prompt.order_not_found_tips') ?? '请检查您的输入信息是否有误，或联系管理员查询。' }}</p>
+                            <h4 class="mb-3">未查询到相关订单</h4>
+                            <p class="text-muted">请检查您的输入信息是否有误，或联系管理员查询。</p>
                             <a href="{{ url('order-search') }}" class="btn btn-outline-primary mt-3">{{ __('dujiaoka.callback') ?? '返回查询' }}</a>
                         </div>
                     </div>
