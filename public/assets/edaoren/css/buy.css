@@ -96,33 +96,51 @@
     letter-spacing: -1px;
 }
 
-/* 商品信息 */
+/* 商品信息 - 参考 Luna 样式 */
 .product-info {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 12px;
+    align-items: center;
 }
 
 .info-item {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 8px;
-    font-size: 14px;
+    gap: 0;
+    font-size: 13px;
     color: var(--text-secondary);
 }
 
+/* 移除可能失效的图标 */
 .info-item .ali-icon {
-    font-size: 16px;
-    color: var(--primary-color);
+    display: none;
 }
 
-.info-label {
-    color: var(--text-light);
+.info-item .info-label {
+    margin-right: 4px;
 }
 
+/* 仿 Luna 的 small-tips 样式 */
 .info-value {
-    font-weight: 600;
-    color: var(--text-main);
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: normal;
+    background: #fbf7da;
+    /* 默认黄色背景 */
+    color: #d6b900;
+}
+
+/* 库存特定样式（如果能通过nth-child区分最好，这里暂时通用） */
+/* 也可以让用户感到更像 Tags */
+
+/* 购买限制标签样式 - 当做红色/粉色标签 */
+.info-item:nth-child(2) .info-value,
+.info-item.limit .info-value {
+    background: #ffebe8;
+    color: #fb636b;
 }
 
 /* 批发价格区域 */
@@ -227,7 +245,7 @@
     box-shadow: var(--shadow-sm);
 }
 
-/* 支付方式 */
+/* 支付方式 - Luna 风格 */
 .payment-methods {
     display: flex;
     flex-wrap: wrap;
@@ -243,28 +261,46 @@
 }
 
 .payment-method-item .btn {
+    display: inline-block;
+    text-align: center;
+    background: #f7f7f7;
+    border: 2px solid transparent;
     border-radius: 8px;
-    padding: 10px 20px;
+    position: relative;
+    padding: 8px 16px;
     font-size: 14px;
-    font-weight: 500;
-    border: 1px solid var(--border-color);
-    background: var(--bg-card);
-    color: var(--text-secondary);
+    color: var(--text-main);
+    cursor: pointer;
     transition: all 0.2s ease;
-    box-shadow: var(--shadow-sm);
+    min-width: 80px;
 }
 
 .payment-method-item .btn:hover {
-    border-color: var(--primary-color);
-    color: var(--primary-color);
-    background: var(--primary-light);
+    background: #fff;
+    border-color: #e7e7e7;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
+/* 选中状态 */
 .payment-method-item .btn-check:checked+.btn {
-    background: var(--primary-color);
+    background: rgb(248, 250, 255);
     border-color: var(--primary-color);
-    color: var(--text-white);
-    box-shadow: var(--shadow-primary);
+    color: var(--primary-color);
+    box-shadow: 0 4px 12px var(--primary-shadow);
+    font-weight: 600;
+}
+
+/* 可以在选中项右上角加个对勾，更像 Luna */
+.payment-method-item .btn-check:checked+.btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 12px 12px;
+    border-color: transparent transparent var(--primary-color) transparent;
 }
 
 /* 提交按钮 */
