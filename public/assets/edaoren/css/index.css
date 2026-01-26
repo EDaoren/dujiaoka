@@ -119,6 +119,14 @@ body {
     vertical-align: middle;
 }
 
+/* 重置 Bootstrap 的 p 标签样式 */
+.notice-content p {
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+    display: inline;
+}
+
 /* 轮播控制按钮 */
 .carousel-control-prev,
 .carousel-control-next {
