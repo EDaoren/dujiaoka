@@ -28,7 +28,6 @@
                                         <!-- 商品信息 -->
                                         <div class="product-info mb-4">
                                             <div class="info-item">
-                                                <i class="ali-icon">&#xe703;</i>
                                                 <span class="info-label">{{__('goods.fields.in_stock')}}：</span>
                                                 <span class="info-value {{ $in_stock > 0 ? 'text-success' : 'text-danger' }}">{{ $in_stock }}</span>
                                             </div>
@@ -47,8 +46,7 @@
                                             @if($buy_limit_num > 0)
                                                 <div class="info-item">
                                                     <span class="badge bg-danger">
-                                                        <i class="ali-icon">&#xe667;</i>
-                                                        {{__('dujiaoka.purchase_limit')}}：{{ $buy_limit_num }}
+                                                        🛒 {{__('dujiaoka.purchase_limit')}}：{{ $buy_limit_num }}
                                                     </span>
                                                 </div>
                                             @endif
