@@ -384,7 +384,10 @@
     width: 100%;
     height: auto;
     object-fit: cover;
+    /* 图片区域添加极淡背景，区分图片与卡片背景 */
+    background: #fdfdfd;
     border-bottom: 1px solid var(--border-color);
+    /* 明确的分割线 */
 }
 
 .goods-item .badge {
@@ -406,6 +409,8 @@
 
 .goods-item .card-body {
     padding: 16px;
+    background: var(--bg-card);
+    transition: background 0.2s ease;
 }
 
 .goods-item .card-title {
