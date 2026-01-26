@@ -72,7 +72,10 @@ body {
     color: #333333;
     padding-right: 10px;
     border-right: 1px solid #E8E8E8;
-    line-height: 1;
+    line-height: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
 }
 
 /* 轮播容器 */
@@ -82,35 +85,42 @@ body {
     position: relative;
     display: flex;
     align-items: center;
+    height: 20px;
 }
 
 .notice-carousel .carousel {
     overflow: hidden;
     width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .notice-carousel .carousel-inner {
     display: flex;
     align-items: center;
+    height: 100%;
 }
 
 .notice-carousel .carousel-item {
     transition: transform 0.6s ease-in-out;
     display: flex;
     align-items: center;
+    height: 100%;
 }
 
 /* 公告内容 */
 .notice-content {
     color: #666666;
     font-size: 13px;
-    line-height: 1.5;
+    line-height: 20px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     padding: 0;
     display: flex;
     align-items: center;
+    height: 20px;
 }
 
 /* 轮播控制按钮 */
