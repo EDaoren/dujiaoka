@@ -384,10 +384,9 @@
     width: 100%;
     height: auto;
     object-fit: cover;
-    /* 图片区域添加极淡背景，区分图片与卡片背景 */
-    background: #fdfdfd;
-    border-bottom: 1px solid var(--border-color);
-    /* 明确的分割线 */
+    border-bottom: 1px solid transparent;
+    /* 移除原来的边框，或者用透明 */
+    transition: all 0.2s ease;
 }
 
 .goods-item .badge {
