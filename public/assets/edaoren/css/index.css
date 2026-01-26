@@ -554,61 +554,6 @@ body {
     align-items: center;
 }
 
-.goods .btn-outline-success {
-    border-color: #FFB800;
-    color: #E6A600;
-    font-weight: 600;
-    border-radius: 10px;
-    padding: 5px 15px;
-    transition: all 0.3s ease;
-}
-
-.goods .btn-outline-success:hover {
-    background: linear-gradient(135deg, #FFD54F 0%, #FFB800 100%);
-    border-color: #FFB800;
-    color: #fff;
-    transform: scale(1.05);
-}
-
-.goods .btn-outline-warning {
-    border-color: #FF9500;
-    color: #FF9500;
-    font-weight: 600;
-    border-radius: 10px;
-    padding: 5px 15px;
-    margin-left: 5px;
-    transition: all 0.3s ease;
-}
-
-.goods .btn-outline-warning:hover {
-    background: linear-gradient(135deg, #FFA726 0%, #FF9500 100%);
-    border-color: #FF9500;
-    color: #fff;
-    transform: scale(1.05);
-}
-
-.goods .btn-primary {
-    background: linear-gradient(135deg, #FFD54F 0%, #FFB800 100%);
-    border: none;
-    border-radius: 25px;
-    padding: 10px 20px;
-    font-weight: 600;
-    width: 100%;
-    margin-top: 15px;
-    transition: all 0.3s ease;
-}
-
-.goods .btn-primary:hover {
-    background: linear-gradient(135deg, #FFB800 0%, #E6A600 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(255, 184, 0, 0.3);
-}
-
-.goods .text-muted {
-    color: #718096 !important;
-    font-size: 0.85rem;
-}
-
 /* 商品购买页面 */
 .buy-form label {
     font-size: 16px;

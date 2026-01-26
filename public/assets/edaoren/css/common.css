@@ -1,3 +1,293 @@
+/* ========== 统一按钮样式 - 闲鱼黄色系 ========== */
+
+/* 主要按钮 - 黄色 */
+.btn-primary {
+    background: #FFB800;
+    border-color: #FFB800;
+    color: #FFFFFF;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: #FFC933;
+    border-color: #FFC933;
+    color: #FFFFFF;
+    transform: translateY(-1px);
+}
+
+.btn-primary:active,
+.btn-primary:focus {
+    background: #E6A600;
+    border-color: #E6A600;
+    color: #FFFFFF;
+}
+
+.btn-primary:disabled {
+    background: #E8E8E8;
+    border-color: #E8E8E8;
+    color: #999999;
+    cursor: not-allowed;
+    opacity: 1;
+}
+
+/* 次要按钮 - 灰色 */
+.btn-secondary {
+    background: #F5F5F5;
+    border-color: #E8E8E8;
+    color: #666666;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background: #E8E8E8;
+    border-color: #D9D9D9;
+    color: #333333;
+}
+
+/* 成功按钮 - 绿色 */
+.btn-success {
+    background: #52C41A;
+    border-color: #52C41A;
+    color: #FFFFFF;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-success:hover {
+    background: #73D13D;
+    border-color: #73D13D;
+    color: #FFFFFF;
+}
+
+/* 危险按钮 - 红色 */
+.btn-danger {
+    background: #FF4D4F;
+    border-color: #FF4D4F;
+    color: #FFFFFF;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-danger:hover {
+    background: #FF7875;
+    border-color: #FF7875;
+    color: #FFFFFF;
+}
+
+/* 警告按钮 - 橙色 */
+.btn-warning {
+    background: #FAAD14;
+    border-color: #FAAD14;
+    color: #FFFFFF;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-warning:hover {
+    background: #FFC53D;
+    border-color: #FFC53D;
+    color: #FFFFFF;
+}
+
+/* 信息按钮 - 蓝色 */
+.btn-info {
+    background: #1890FF;
+    border-color: #1890FF;
+    color: #FFFFFF;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-info:hover {
+    background: #40A9FF;
+    border-color: #40A9FF;
+    color: #FFFFFF;
+}
+
+/* 深色按钮 - 深灰 */
+.btn-dark {
+    background: #595959;
+    border-color: #595959;
+    color: #FFFFFF;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-dark:hover {
+    background: #434343;
+    border-color: #434343;
+    color: #FFFFFF;
+}
+
+/* ========== 轮廓按钮样式 ========== */
+
+/* 主要轮廓按钮 - 黄色边框 */
+.btn-outline-primary {
+    background: transparent;
+    border: 2px solid #FFB800;
+    color: #FFB800;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-outline-primary:hover {
+    background: #FFB800;
+    border-color: #FFB800;
+    color: #FFFFFF;
+}
+
+.btn-outline-primary:active,
+.btn-outline-primary:focus {
+    background: #E6A600;
+    border-color: #E6A600;
+    color: #FFFFFF;
+}
+
+/* 次要轮廓按钮 - 灰色边框 */
+.btn-outline-secondary {
+    background: transparent;
+    border: 2px solid #E8E8E8;
+    color: #666666;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-outline-secondary:hover {
+    background: #F5F5F5;
+    border-color: #D9D9D9;
+    color: #333333;
+}
+
+/* 成功轮廓按钮 - 绿色边框 */
+.btn-outline-success {
+    background: transparent;
+    border: 2px solid #52C41A;
+    color: #52C41A;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-outline-success:hover {
+    background: #52C41A;
+    border-color: #52C41A;
+    color: #FFFFFF;
+}
+
+/* 危险轮廓按钮 - 红色边框 */
+.btn-outline-danger {
+    background: transparent;
+    border: 2px solid #FF4D4F;
+    color: #FF4D4F;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-outline-danger:hover {
+    background: #FF4D4F;
+    border-color: #FF4D4F;
+    color: #FFFFFF;
+}
+
+/* 警告轮廓按钮 - 橙色边框 */
+.btn-outline-warning {
+    background: transparent;
+    border: 2px solid #FAAD14;
+    color: #FAAD14;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-outline-warning:hover {
+    background: #FAAD14;
+    border-color: #FAAD14;
+    color: #FFFFFF;
+}
+
+/* 信息轮廓按钮 - 蓝色边框 */
+.btn-outline-info {
+    background: transparent;
+    border: 2px solid #1890FF;
+    color: #1890FF;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-outline-info:hover {
+    background: #1890FF;
+    border-color: #1890FF;
+    color: #FFFFFF;
+}
+
+/* 深色轮廓按钮 - 深灰边框 */
+.btn-outline-dark {
+    background: transparent;
+    border: 2px solid #595959;
+    color: #595959;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-outline-dark:hover {
+    background: #595959;
+    border-color: #595959;
+    color: #FFFFFF;
+}
+
+/* ========== 统一标签样式 - 闲鱼黄色系 ========== */
+
+/* 成功标签 - 绿色 */
+.badge.bg-success {
+    background: #52C41A !important;
+    color: #FFFFFF;
+    font-weight: 500;
+}
+
+/* 警告标签 - 橙色 */
+.badge.bg-warning {
+    background: #FAAD14 !important;
+    color: #FFFFFF;
+    font-weight: 500;
+}
+
+/* 危险标签 - 红色 */
+.badge.bg-danger {
+    background: #FF4D4F !important;
+    color: #FFFFFF;
+    font-weight: 500;
+}
+
+/* 深色标签 - 深灰 */
+.badge.bg-dark {
+    background: #595959 !important;
+    color: #FFFFFF;
+    font-weight: 500;
+}
+
+/* 主要标签 - 黄色 */
+.badge.bg-primary {
+    background: #FFB800 !important;
+    color: #FFFFFF;
+    font-weight: 500;
+}
+
+/* 次要标签 - 灰色 */
+.badge.bg-secondary {
+    background: #8C8C8C !important;
+    color: #FFFFFF;
+    font-weight: 500;
+}
+
+/* 信息标签 - 蓝色 */
+.badge.bg-info {
+    background: #1890FF !important;
+    color: #FFFFFF;
+    font-weight: 500;
+}
+
+/* ========== 原有样式 ========== */
+
 @font-face {
     font-family: 'iconfont';
     src: url('../fonts/iconfont.woff2?t=1631608872177') format('woff2'),
@@ -78,20 +368,7 @@
     transform: translateY(-2px);
 }
 
-/* 搜索按钮 */
-.btn-secondary {
-    background: linear-gradient(135deg, #FFD54F 0%, #FFB800 100%);
-    border: none;
-    border-radius: 10px;
-    padding: 8px 15px;
-    transition: all 0.3s ease;
-}
-
-.btn-secondary:hover {
-    background: linear-gradient(135deg, #FFB800 0%, #E6A600 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 184, 0, 0.3);
-}
+/* 搜索按钮 - 使用统一的 btn-primary 样式 */
 
 /* 底部样式 */
 .footer {

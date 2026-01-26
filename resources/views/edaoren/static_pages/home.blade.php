@@ -228,14 +228,14 @@
 
             // 关闭公告横幅
             $('.notice-close').on('click', function() {
-                $('.xianyu-notice-banner').slideUp(300, function() {
+                $('.xianyu-notice').slideUp(300, function() {
                     localStorage.setItem('noticeHidden', 'true');
                 });
             });
 
             // 检查是否之前已关闭
             if (localStorage.getItem('noticeHidden') === 'true') {
-                $('.xianyu-notice-banner').hide();
+                $('.xianyu-notice').hide();
             }
 
             // 初始化瀑布流布局
