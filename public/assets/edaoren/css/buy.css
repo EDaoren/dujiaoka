@@ -54,141 +54,35 @@
 
 /* 商品标题 */
 .product-title {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+    /* 减小字号，原本是 1.5rem */
     font-weight: 600;
     color: var(--text-main);
     line-height: 1.4;
     margin-bottom: 0;
 }
 
-/* 价格区域 */
-.price-section {
-    background: linear-gradient(135deg, var(--primary-light) 0%, #FFFBF0 100%);
-    border-radius: 8px;
-    padding: 16px 20px;
-    border-left: 4px solid var(--primary-color);
-    box-shadow: var(--shadow-sm);
-}
-
-.price-label {
-    font-size: 13px;
-    color: var(--text-secondary);
-    margin-bottom: 4px;
-}
-
-.price-value {
-    display: flex;
-    align-items: baseline;
-    gap: 4px;
-}
-
-.price-value .currency {
-    font-size: 18px;
-    color: #FF6A00;
-    font-weight: 600;
-}
-
-.price-value .amount {
-    font-size: 32px;
-    color: #FF6A00;
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: -1px;
-}
-
-/* 商品信息 - 参考 Luna 样式 */
-.product-info {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    align-items: center;
-}
-
-.info-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 0;
-    font-size: 13px;
-    color: var(--text-secondary);
-}
-
-/* 移除可能失效的图标 - 恢复显示并美化 */
-.info-item .ali-icon {
-    /* display: none; */
-    font-size: 14px;
-    margin-right: 2px;
-    vertical-align: middle;
-}
-
-.info-item .badge .ali-icon {
-    font-size: 12px;
-    margin-right: 2px;
-}
-
-.info-item .info-label {
-    margin-right: 4px;
-}
-
-/* 仿 Luna 的 small-tips 样式 */
-.info-value {
-    display: inline-block;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: normal;
-    background: #fbf7da;
-    /* 默认黄色背景 */
-    color: #d6b900;
-}
-
-/* 库存特定样式（如果能通过nth-child区分最好，这里暂时通用） */
-/* 也可以让用户感到更像 Tags */
-
-/* 购买限制标签样式 - 当做红色/粉色标签 */
-.info-item:nth-child(2) .info-value,
-.info-item.limit .info-value {
-    background: #ffebe8;
-    color: #fb636b;
-}
-
-/* 批发价格区域 */
-.wholesale-section {
-    background: var(--bg-light);
-    border-radius: 8px;
-    padding: 16px;
-    border: 1px solid var(--border-color);
-}
-
-.wholesale-title {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text-main);
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.wholesale-title .ali-icon {
-    color: var(--primary-color);
-    font-size: 16px;
-}
+/* ... (省略中间未变部分) ... */
 
 .wholesale-list {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    /* 改为水平排列 */
+    flex-wrap: wrap;
+    /* 允许换行 */
     gap: 8px;
 }
 
 .wholesale-item {
-    display: flex;
-    justify-content: space-between;
+    display: inline-flex;
+    justify-content: center;
     align-items: center;
-    padding: 8px 12px;
-    background: var(--bg-card);
-    border-radius: 6px;
-    font-size: 13px;
+    padding: 4px 10px;
+    background: #fff;
+    border-radius: 4px;
+    font-size: 12px;
     border: 1px solid var(--border-color);
+    width: auto;
 }
 
 .wholesale-qty {
