@@ -54,15 +54,15 @@
 
                                         <!-- 批发价格 -->
                                         @if(!empty($wholesale_price_cnf) && is_array($wholesale_price_cnf))
-                                            <div class="wholesale-section mb-3 p-2 bg-light rounded small">
-                                                <div class="wholesale-title text-muted mb-1">
+                                            <div class="wholesale-section">
+                                                <div class="wholesale-title">
                                                     <i class="ali-icon">&#xe77d;</i> 批发优惠
                                                 </div>
-                                                <div class="wholesale-list d-flex flex-wrap gap-2">
+                                                <div class="wholesale-list">
                                                     @foreach($wholesale_price_cnf as $ws)
-                                                        <div class="wholesale-item badge bg-white text-dark border">
+                                                        <div class="wholesale-item">
                                                             <span class="wholesale-qty">{{ $ws['number'] }}{{ __('dujiaoka.or_the_above') }}</span>
-                                                            <span class="wholesale-price text-danger ms-1">{{ __('dujiaoka.money_symbol') }}{{ $ws['price'] }}</span>
+                                                            <span class="wholesale-price">{{ __('dujiaoka.money_symbol') }}{{ $ws['price'] }}</span>
                                                         </div>
                                                     @endforeach
                                                 </div>

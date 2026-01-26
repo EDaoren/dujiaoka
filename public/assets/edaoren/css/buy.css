@@ -64,34 +64,68 @@
 
 /* ... (省略中间未变部分) ... */
 
+/* 批发优惠区域 */
+.wholesale-section {
+    background: linear-gradient(135deg, #fff5e6 0%, #ffe8cc 100%) !important;
+    border: 1px solid #ffd699 !important;
+    border-radius: 8px !important;
+    padding: 14px 16px !important;
+    margin-bottom: 16px;
+}
+
+.wholesale-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #d97706;
+    margin-bottom: 10px !important;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.wholesale-title .ali-icon {
+    font-size: 16px;
+    color: #f59e0b;
+}
+
 .wholesale-list {
     display: flex;
     flex-direction: row;
-    /* 改为水平排列 */
     flex-wrap: wrap;
-    /* 允许换行 */
-    gap: 8px;
+    gap: 10px;
 }
 
 .wholesale-item {
     display: inline-flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    padding: 4px 10px;
-    background: #fff;
-    border-radius: 4px;
-    font-size: 12px;
-    border: 1px solid var(--border-color);
-    width: auto;
+    padding: 8px 14px;
+    background: #ffffff;
+    border-radius: 6px;
+    font-size: 13px;
+    border: 1.5px solid #fbbf24;
+    box-shadow: 0 2px 4px rgba(251, 191, 36, 0.1);
+    transition: all 0.2s ease;
+    min-width: 120px;
+    gap: 8px;
+}
+
+.wholesale-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.25);
+    border-color: #f59e0b;
 }
 
 .wholesale-qty {
-    color: var(--text-secondary);
+    color: #78716c;
+    font-weight: 500;
+    font-size: 12px;
 }
 
 .wholesale-price {
-    color: #FF6A00;
-    font-weight: 600;
+    color: #dc2626;
+    font-weight: 700;
+    font-size: 14px;
 }
 
 /* 购买表单 */
