@@ -159,8 +159,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- 商品描述 -->
+            <!-- 商品描述 -->
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-10">
                         <div class="card mt-3 mb-3 description-card">
@@ -175,7 +176,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
 
     </section>
