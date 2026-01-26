@@ -1,5 +1,5 @@
 <!-- header start -->
-<header class="header sticky-top">
+<header class="header">
     <div class="container">
         <div class="row">
             <div class="col-md-3">
