@@ -1,0 +1,393 @@
+/* ========== 商品详情页样式 - 闲鱼风格 ========== */
+
+/* 详情页卡片 */
+.buy-detail-card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+/* 商品图片区域 */
+.product-image-wrapper {
+    position: relative;
+    background: #F7F8FA;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+}
+
+.product-image {
+    width: 100%;
+    height: auto;
+    max-width: 350px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.product-image-wrapper .badge {
+    border-radius: 0 0 8px 0;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* 商品标题 */
+.product-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333333;
+    line-height: 1.4;
+    margin-bottom: 0;
+}
+
+/* 价格区域 */
+.price-section {
+    background: linear-gradient(135deg, #FFF9E6 0%, #FFFBF0 100%);
+    border-radius: 8px;
+    padding: 16px 20px;
+    border-left: 4px solid #FFB800;
+}
+
+.price-label {
+    font-size: 14px;
+    color: #666666;
+    margin-bottom: 4px;
+}
+
+.price-value {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.price-value .currency {
+    font-size: 18px;
+    color: #FF6A00;
+    font-weight: 600;
+}
+
+.price-value .amount {
+    font-size: 32px;
+    color: #FF6A00;
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* 商品信息 */
+.product-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: #666666;
+}
+
+.info-item .ali-icon {
+    font-size: 16px;
+    color: #FFB800;
+}
+
+.info-label {
+    color: #999999;
+}
+
+.info-value {
+    font-weight: 600;
+    color: #333333;
+}
+
+/* 批发价格区域 */
+.wholesale-section {
+    background: #F7F8FA;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.wholesale-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.wholesale-title .ali-icon {
+    color: #FFB800;
+    font-size: 16px;
+}
+
+.wholesale-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.wholesale-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: #FFFFFF;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+.wholesale-qty {
+    color: #666666;
+}
+
+.wholesale-price {
+    color: #FF6A00;
+    font-weight: 600;
+}
+
+/* 购买表单 */
+.buy-form .form-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333333;
+    margin-bottom: 8px;
+}
+
+.buy-form .form-control {
+    border-radius: 8px;
+    border: 1px solid #E8E8E8;
+    padding: 10px 14px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.buy-form .form-control:focus {
+    border-color: #FFB800;
+    box-shadow: 0 0 0 3px rgba(255, 184, 0, 0.1);
+}
+
+.buy-form .form-control::placeholder {
+    color: #CCCCCC;
+}
+
+/* 验证码区域 */
+.verify-code-wrapper {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.verify-code-wrapper .form-control {
+    flex: 1;
+}
+
+.verify-code-img {
+    height: 42px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.verify-code-img:hover {
+    opacity: 0.8;
+    transform: scale(1.02);
+}
+
+/* 支付方式 */
+.payment-methods {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.payment-method-item {
+    flex: 0 0 auto;
+}
+
+.payment-method-item .btn-check {
+    display: none;
+}
+
+.payment-method-item .btn {
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    border: 2px solid #E8E8E8;
+    background: #FFFFFF;
+    color: #666666;
+    transition: all 0.2s ease;
+}
+
+.payment-method-item .btn:hover {
+    border-color: #FFB800;
+    color: #FFB800;
+}
+
+.payment-method-item .btn-check:checked + .btn {
+    background: #FFB800;
+    border-color: #FFB800;
+    color: #FFFFFF;
+}
+
+/* 提交按钮 */
+.buy-form .btn-primary {
+    border-radius: 10px;
+    padding: 14px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.buy-form .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 184, 0, 0.3);
+}
+
+/* 商品描述卡片 */
+.description-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.description-card .card-header {
+    background: #F7F8FA;
+    border-bottom: 1px solid #E8E8E8;
+    padding: 16px 20px;
+}
+
+.description-card .card-header h5 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.description-card .card-header .ali-icon {
+    color: #FFB800;
+    font-size: 18px;
+}
+
+.description-card .card-body {
+    padding: 24px;
+    color: #666666;
+    line-height: 1.8;
+}
+
+.description-card .card-body p {
+    margin-bottom: 12px;
+}
+
+.description-card .card-body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 12px 0;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .product-image-wrapper {
+        padding: 30px;
+        min-height: 300px;
+    }
+
+    .product-image {
+        max-width: 250px;
+    }
+
+    .product-title {
+        font-size: 20px;
+    }
+
+    .price-value .amount {
+        font-size: 28px;
+    }
+
+    .payment-methods {
+        flex-direction: column;
+    }
+
+    .payment-method-item {
+        width: 100%;
+    }
+
+    .payment-method-item .btn {
+        width: 100%;
+    }
+
+    .verify-code-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .verify-code-img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 576px) {
+    .product-image-wrapper {
+        padding: 20px;
+        min-height: 250px;
+    }
+
+    .product-image {
+        max-width: 200px;
+    }
+
+    .price-section {
+        padding: 12px 16px;
+    }
+
+    .price-value .amount {
+        font-size: 24px;
+    }
+
+    .buy-form .btn-primary {
+        padding: 12px 20px;
+        font-size: 15px;
+    }
+}
+
+/* 模态框优化 */
+.modal-content {
+    border-radius: 12px;
+    border: none;
+}
+
+.modal-header {
+    background: #F7F8FA;
+    border-bottom: 1px solid #E8E8E8;
+    border-radius: 12px 12px 0 0;
+    padding: 16px 20px;
+}
+
+.modal-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333333;
+}
+
+.modal-body {
+    padding: 24px;
+    color: #666666;
+    line-height: 1.6;
+}
+
+.modal-footer {
+    border-top: 1px solid #E8E8E8;
+    padding: 16px 20px;
+}
