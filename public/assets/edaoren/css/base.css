@@ -6,6 +6,12 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 em,
 i {
     font-style: normal
@@ -37,14 +43,17 @@ a {
 button,
 input {
     font-family: Microsoft YaHei, Heiti SC, tahoma, arial, Hiragino Sans GB, "\5B8B\4F53", sans-serif;
-    border: 0; 
+    border: 0;
     outline: none;
 }
 
 body {
     -webkit-font-smoothing: antialiased;
-    background-color: #fff;
+    background-color: #f5f7fa;
     font: 14px/1.5 Microsoft YaHei, Heiti SC, tahoma, arial, Hiragino Sans GB, "\5B8B\4F53", sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .hide,

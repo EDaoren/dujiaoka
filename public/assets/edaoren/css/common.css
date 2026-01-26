@@ -158,6 +158,7 @@
 /* 主容器 */
 .main-container {
     min-height: 60vh;
+    flex: 1;
 }
 
 /* 卡片通用样式 */

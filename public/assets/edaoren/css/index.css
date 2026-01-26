@@ -10,7 +10,7 @@ body {
 
 .xianyu-notice-banner {
     margin-top: 12px;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
 .notice-wrapper {
@@ -80,10 +80,13 @@ body {
     flex: 1;
     min-width: 0;
     position: relative;
+    display: flex;
+    align-items: center;
 }
 
 .notice-carousel .carousel {
     overflow: hidden;
+    width: 100%;
 }
 
 .notice-carousel .carousel-inner {
@@ -93,17 +96,21 @@ body {
 
 .notice-carousel .carousel-item {
     transition: transform 0.6s ease-in-out;
+    display: flex;
+    align-items: center;
 }
 
 /* 公告内容 */
 .notice-content {
     color: #333333;
     font-size: 14px;
-    line-height: 1.4;
+    line-height: 1.5;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding: 0 8px;
+    padding: 0;
+    display: flex;
+    align-items: center;
 }
 
 /* 轮播控制按钮 */
@@ -219,7 +226,7 @@ body {
 
 /* 分类区域 */
 .category {
-    padding: 12px 0;
+    padding: 8px 0;
 }
 
 .category h3 {
