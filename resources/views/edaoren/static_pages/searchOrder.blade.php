@@ -4,8 +4,6 @@
     <section class="main-container">
         <div class="container">
             <div class="good-card">
-                <div class="row justify-content-center">
-                    <div class="col-12 col-lg-10">
                         <div class="card m-3">
                             <div class="card-body p-4">
                                 <h3 class="card-title">{{ __('dujiaoka.order_search') }}</h3>
@@ -83,7 +81,6 @@
                     </div>
                 </div>
             </div>
-        </div>
     </section>
     <!-- main end -->
 @stop

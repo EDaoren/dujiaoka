@@ -4,10 +4,8 @@
     <section class="main-container">
         <div class="container">
             <div class="order-card">
-                <div class="row justify-content-center">
 
                     @foreach($orders as $order)
-                    <div class="col-12 col-lg-10">
                         <div class="card mt-3">
                             <div class="row no-gutters">
                                 <div class="col-12 col-md-6">
@@ -90,7 +88,6 @@
                     </div>
 
                     @endforeach
-                </div>
             </div>
         </div>
 

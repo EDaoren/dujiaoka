@@ -1,9 +1,8 @@
 @extends('edaoren.layouts.default')
 @section('content')
+    <!-- main start -->
     <section class="main-container">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-10">
             <!-- 公告横幅 - 独立显示 -->
             <div class="xianyu-notice">
                 <div class="notice-wrapper">
@@ -208,8 +207,6 @@
                 </div>
             </div>
             <!-- 闲鱼风格统一容器结束 -->
-                </div>
-            </div>
         </div>
     </section>
     <!-- main end -->

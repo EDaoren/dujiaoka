@@ -4,8 +4,6 @@
     <section class="main-container">
         <div class="container">
             <div class="good-card">
-                <div class="row justify-content-center">
-                    <div class="col-12 col-lg-10">
                         <div class="card mt-3 buy-detail-card">
                             <div class="row g-0">
                                 <div class="col-md-5">
@@ -163,9 +161,7 @@
                 </div>
 
                 <!-- 商品描述 -->
-                <div class="row justify-content-center">
-                    <div class="col-12 col-lg-10">
-                        <div class="card mt-3 mb-3 description-card">
+                <div class="card mt-3 mb-3 description-card">
                             <div class="card-header">
                                 <h5 class="mb-0">
                                     <i class="ali-icon">&#xe667;</i> {{ __('goods.fields.description') }}
