@@ -2,19 +2,13 @@
 <header class="header">
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
-                <div class="header-left clearfix">
-                    <div class="logo d-none d-md-block">
-                        <a href="/">
-                            <img src="{{ picture_ulr(dujiaoka_config_get('img_logo')) }}" alt="Logo">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-9">
+            <div class="col-12">
                 <div class="header-right clearfix">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="/">{{ dujiaoka_config_get('text_logo') }}</a>
+                        <a class="navbar-brand d-flex align-items-center" href="/">
+                            <img src="{{ picture_ulr(dujiaoka_config_get('img_logo')) }}" alt="Logo" class="me-2" style="height: 40px;">
+                            <span>{{ dujiaoka_config_get('text_logo') }}</span>
+                        </a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#navbarColor" aria-controls="navbarColor" aria-expanded="false"
                                 aria-label="Toggle navigation">
