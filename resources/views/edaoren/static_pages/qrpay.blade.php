@@ -5,7 +5,7 @@
         <div class="container">
             <div class="good-card">
                 <div class="row justify-content-center">
-                    <div class="col-md-8 col-12">
+                    <div class="col-12 col-lg-10">
                         <div class="card m-3">
                             <div class="card-body p-4 text-center">
                                 <h3 class="card-title text-primary">{{ __('dujiaoka.scan_qrcode_to_pay') }}</h3>
