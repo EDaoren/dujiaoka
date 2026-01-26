@@ -6,46 +6,46 @@
             <div class="good-card">
                         <div class="card mt-3 buy-detail-card">
                             <div class="row g-0">
-                                <div class="col-md-5">
-                                    <div class="product-image-wrapper">
+                                <div class="col-md-4">
+                                    <div class="product-image-wrapper p-3">
                                         <img src="{{ picture_ulr($picture) }}"
-                                             class="product-image" alt="{{ $gd_name }}">
+                                             class="product-image rounded" alt="{{ $gd_name }}">
                                     </div>
                                 </div>
-                                <div class="col-md-7">
-                                    <div class="card-body p-4">
-                                        <h2 class="product-title mb-3">{{ $gd_name }}</h2>
+                                <div class="col-md-8">
+                                    <div class="card-body p-3">
+                                        <h4 class="product-title mb-2 fw-bold">{{ $gd_name }}</h4>
 
                                         <!-- 价格区域 -->
-                                        <div class="price-section mb-4">
-                                            <div class="price-label">{{ __('dujiaoka.price') }}</div>
+                                        <div class="price-section mb-3 p-2 rounded" style="background-color: #fff9e6;">
+                                            <div class="price-label text-muted small">{{ __('dujiaoka.price') }}</div>
                                             <div class="price-value">
-                                                <span class="currency">{{ __('dujiaoka.money_symbol') }}</span>
-                                                <span class="amount">{{ $actual_price }}</span>
+                                                <span class="currency fs-5 text-danger fw-bold">{{ __('dujiaoka.money_symbol') }}</span>
+                                                <span class="amount fs-3 text-danger fw-bold">{{ $actual_price }}</span>
                                             </div>
                                         </div>
 
                                         <!-- 商品信息 -->
-                                        <div class="product-info mb-4">
+                                        <div class="product-info mb-3 small">
                                             <div class="info-item">
-                                                <span class="info-label">{{__('goods.fields.in_stock')}}：</span>
-                                                <span class="info-value {{ $in_stock > 0 ? 'text-success' : 'text-danger' }}">{{ $in_stock }}</span>
+                                                <span class="info-label text-muted">{{__('goods.fields.in_stock')}}：</span>
+                                                <span class="info-value text-dark fw-bold">{{ $in_stock }}</span>
                                             </div>
                                             <div class="info-item">
-                                                <span class="info-label">已售：</span>
-                                                <span class="info-value">{{ $sales_volume }}</span>
+                                                <span class="info-label text-muted">已售：</span>
+                                                <span class="info-value text-dark fw-bold">{{ $sales_volume }}</span>
                                             </div>
                                             <div class="info-item">
-                                                <span class="info-label">类型：</span>
+                                                <span class="info-label text-muted">类型：</span>
                                                 @if($type == \App\Models\Goods::AUTOMATIC_DELIVERY)
-                                                    <span class="badge bg-success"><i class="ali-icon">&#xe7db;</i> {{ __('goods.fields.automatic_delivery') }}</span>
+                                                    <span class="badge bg-success small"><i class="ali-icon">&#xe7db;</i> {{ __('goods.fields.automatic_delivery') }}</span>
                                                 @else
-                                                    <span class="badge bg-warning"><i class="ali-icon">&#xe74b;</i> {{ __('goods.fields.manual_processing') }}</span>
+                                                    <span class="badge bg-warning small"><i class="ali-icon">&#xe74b;</i> {{ __('goods.fields.manual_processing') }}</span>
                                                 @endif
                                             </div>
                                             @if($buy_limit_num > 0)
                                                 <div class="info-item">
-                                                    <span class="badge bg-danger">
+                                                    <span class="badge bg-danger small">
                                                         🛒 {{__('dujiaoka.purchase_limit')}}：{{ $buy_limit_num }}
                                                     </span>
                                                 </div>
@@ -54,89 +54,93 @@
 
                                         <!-- 批发价格 -->
                                         @if(!empty($wholesale_price_cnf) && is_array($wholesale_price_cnf))
-                                            <div class="wholesale-section mb-4">
-                                                <div class="wholesale-title">
+                                            <div class="wholesale-section mb-3 p-2 bg-light rounded small">
+                                                <div class="wholesale-title text-muted mb-1">
                                                     <i class="ali-icon">&#xe77d;</i> 批发优惠
                                                 </div>
-                                                <div class="wholesale-list">
+                                                <div class="wholesale-list d-flex flex-wrap gap-2">
                                                     @foreach($wholesale_price_cnf as $ws)
-                                                        <div class="wholesale-item">
+                                                        <div class="wholesale-item badge bg-white text-dark border">
                                                             <span class="wholesale-qty">{{ $ws['number'] }}{{ __('dujiaoka.or_the_above') }}</span>
-                                                            <span class="wholesale-price">{{ __('dujiaoka.each') }}：{{ $ws['price'] }}{{ __('dujiaoka.money_symbol') }}</span>
+                                                            <span class="wholesale-price text-danger ms-1">{{ __('dujiaoka.money_symbol') }}{{ $ws['price'] }}</span>
                                                         </div>
                                                     @endforeach
                                                 </div>
                                             </div>
                                         @endif
 
-                                        <div class="buy-form mt-4">
+                                        <div class="buy-form mt-3">
                                             <form  action="{{ url('create-order') }}" method="post">
                                                 {{ csrf_field() }}
-                                                <div class="form-group row g-3">
+                                                <div class="form-group row g-2">
                                                     <div class="col-12 col-md-6">
                                                         <input type="hidden" name="gid" value="{{ $id }}">
-                                                        <label for="email" class="form-label">{{ __('dujiaoka.email') }}</label>
-                                                        <input type="email" class="form-control"
+                                                        <label for="email" class="form-label small text-muted mb-1">{{ __('dujiaoka.email') }}</label>
+                                                        <input type="email" class="form-control form-control-sm"
                                                                name="email" id="email" required placeholder="{{ __('dujiaoka.email') }}">
                                                     </div>
                                                     <div class="col-12 col-md-6">
-                                                        <label for="shop-number" class="form-label">{{ __('dujiaoka.by_amount') }}</label>
-                                                        <input type="number" class="form-control"
-                                                               id="shop-number" name="by_amount" placeholder="1" min="1" value="1">
+                                                        <label for="shop-number" class="form-label small text-muted mb-1">{{ __('dujiaoka.by_amount') }}</label>
+                                                        <div class="input-group input-group-sm">
+                                                            <button class="btn btn-outline-secondary" type="button" onclick="if(this.nextElementSibling.value>1)this.nextElementSibling.value--">-</button>
+                                                            <input type="number" class="form-control text-center"
+                                                                   id="shop-number" name="by_amount" placeholder="1" min="1" value="1">
+                                                            <button class="btn btn-outline-secondary" type="button" onclick="this.previousElementSibling.value++">+</button>
+                                                        </div>
                                                     </div>
                                                     @if(isset($open_coupon))
                                                         <div class="col-12 col-md-6">
-                                                            <label for="coupon" class="form-label">{{ __('dujiaoka.coupon_code') }}</label>
+                                                            <label for="coupon" class="form-label small text-muted mb-1">{{ __('dujiaoka.coupon_code') }}</label>
                                                             <input type="text"
-                                                                   class="form-control"
+                                                                   class="form-control form-control-sm"
                                                                    id="coupon" name="coupon_code" placeholder="{{ __('dujiaoka.coupon_code') }}" value="" >
                                                         </div>
                                                     @endif
                                                     @if(dujiaoka_config_get('is_open_search_pwd') == \App\Models\Goods::STATUS_OPEN)
                                                         <div class="col-12 col-md-6">
-                                                            <label for="search_pwd" class="form-label">{{ __('dujiaoka.search_password') }}</label>
+                                                            <label for="search_pwd" class="form-label small text-muted mb-1">{{ __('dujiaoka.search_password') }}</label>
                                                             <input type="text"
-                                                                   class="form-control"
+                                                                   class="form-control form-control-sm"
                                                                    id="search_pwd" name="search_pwd" required placeholder="{{ __('dujiaoka.search_password') }}" value="" >
                                                         </div>
                                                     @endif
 
                                                     @if(dujiaoka_config_get('is_open_img_code') == \App\Models\Goods::STATUS_OPEN)
                                                         <div class="col-12 col-md-6">
-                                                            <label for="verifyCode" class="form-label">{{ __('dujiaoka.img_verify_code') }}</label>
-                                                            <div class="verify-code-wrapper">
+                                                            <label for="verifyCode" class="form-label small text-muted mb-1">{{ __('dujiaoka.img_verify_code') }}</label>
+                                                            <div class="input-group input-group-sm">
                                                                 <input type="text" name="img_verify_code" class="form-control"
                                                                        id="verifyCode" required placeholder="{{ __('dujiaoka.img_verify_code') }}">
-                                                                <img class="verify-code-img" src="{{ captcha_src('buy') . time() }}"
+                                                                <img class="verify-code-img border rounded-end" style="height: 31px; cursor: pointer;" src="{{ captcha_src('buy') . time() }}"
                                                                      alt="{{ __('dujiaoka.img_verify_code') }}" onclick="refresh()" id="imageCode">
-                                                                <script>
-                                                                    function refresh(){
-                                                                        $('#imageCode').attr('src','{{ captcha_src('buy') }}'+Math.random());
-                                                                    }
-                                                                </script>
                                                             </div>
+                                                            <script>
+                                                                function refresh(){
+                                                                    $('#imageCode').attr('src','{{ captcha_src('buy') }}'+Math.random());
+                                                                }
+                                                            </script>
                                                         </div>
                                                     @endif
 
                                                     @if($type == \App\Models\Goods::MANUAL_PROCESSING && is_array($other_ipu))
                                                         @foreach($other_ipu as $ipu)
                                                             <div class="col-12 col-md-6">
-                                                                <label for="{{ $ipu['field'] }}" class="form-label">{{ $ipu['desc'] }}</label>
+                                                                <label for="{{ $ipu['field'] }}" class="form-label small text-muted mb-1">{{ $ipu['desc'] }}</label>
                                                                 <input type="text"
-                                                                       class="form-control"
+                                                                       class="form-control form-control-sm"
                                                                        id="{{ $ipu['field'] }}" name="{{ $ipu['field'] }}" @if($ipu['rule'] !== false) required @endif placeholder="{{ $ipu['placeholder'] }}">
                                                             </div>
                                                         @endforeach
                                                     @endif
 
                                                     <div class="col-12">
-                                                        <label class="form-label">{{ __('dujiaoka.payment_method') }}</label>
-                                                        <div class="payment-methods">
+                                                        <label class="form-label small text-muted mb-1">{{ __('dujiaoka.payment_method') }}</label>
+                                                        <div class="payment-methods d-flex flex-wrap gap-2">
                                                             @foreach($payways as $index => $way)
                                                                 <div class="payment-method-item">
                                                                     <input type="radio" class="btn-check" id="payway-{{ $way['id'] }}"
                                                                            name="payway" value="{{ $way['id'] }}" @if($index == 0) checked="checked" @endif>
-                                                                    <label class="btn btn-outline-secondary" for="payway-{{ $way['id'] }}">
+                                                                    <label class="btn btn-sm btn-outline-secondary rounded-pill px-3" for="payway-{{ $way['id'] }}">
                                                                         {{ $way['pay_name'] }}
                                                                     </label>
                                                                 </div>
@@ -145,7 +149,7 @@
                                                     </div>
 
                                                     <div class="col-12 mt-3">
-                                                        <button type="submit" id="submit" class="btn btn-primary btn-lg w-100">
+                                                        <button type="submit" id="submit" class="btn btn-primary w-100 rounded-pill shadow-sm">
                                                             <i class="ali-icon">&#xe7d8;</i> {{ __('dujiaoka.order_now') }}
                                                         </button>
                                                     </div>
