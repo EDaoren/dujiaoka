@@ -51,7 +51,7 @@
 .navbar-brand {
     font-size: 1.5rem;
     font-weight: 700;
-    background: linear-gradient(135deg, #3C8CE7 10%, #00EAFF 100%);
+    background: linear-gradient(135deg, #5B8DEF 0%, #4A7FE8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -73,14 +73,14 @@
 
 .navbar-nav .nav-link:hover,
 .navbar-nav .nav-link.active {
-    background: linear-gradient(135deg, #3C8CE7 10%, #00EAFF 100%);
+    background: linear-gradient(135deg, #5B8DEF 0%, #4A7FE8 100%);
     color: #fff;
     transform: translateY(-2px);
 }
 
 /* 搜索按钮 */
 .btn-secondary {
-    background: linear-gradient(135deg, #3C8CE7 10%, #00EAFF 100%);
+    background: linear-gradient(135deg, #5B8DEF 0%, #4A7FE8 100%);
     border: none;
     border-radius: 10px;
     padding: 8px 15px;
@@ -88,9 +88,9 @@
 }
 
 .btn-secondary:hover {
-    background: linear-gradient(135deg, #00EAFF 10%, #3C8CE7 100%);
+    background: linear-gradient(135deg, #4A7FE8 0%, #3B6FD8 100%);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(60, 140, 231, 0.4);
+    box-shadow: 0 5px 15px rgba(74, 127, 232, 0.3);
 }
 
 /* 底部样式 */
@@ -109,15 +109,15 @@
 }
 
 .footer a {
-    color: #3C8CE7;
+    color: #5B8DEF;
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s ease;
 }
 
 .footer a:hover {
-    color: #00EAFF;
-    text-shadow: 0 0 10px rgba(0, 234, 255, 0.3);
+    color: #4A7FE8;
+    text-shadow: 0 0 10px rgba(74, 127, 232, 0.2);
 }
 
 /* 响应式导航 */

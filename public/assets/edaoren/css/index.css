@@ -32,7 +32,7 @@ body {
 
 /* 分类区域 */
 .category {
-    padding: 60px 0 40px;
+    padding: 30px 0 40px;
 }
 
 .category h3 {
@@ -47,7 +47,7 @@ body {
     width: 80px;
     height: 4px;
     margin: 20px auto;
-    background: linear-gradient(90deg, #3C8CE7 0%, rgba(60, 140, 231, 0.3) 100%);
+    background: linear-gradient(90deg, #5B8DEF 0%, rgba(91, 141, 239, 0.3) 100%);
     border: none;
     border-radius: 2px;
     position: relative;
@@ -58,7 +58,7 @@ body {
     position: absolute;
     width: 40px;
     height: 4px;
-    background: #00EAFF;
+    background: #4A7FE8;
     top: 0;
     left: 0;
     border-radius: 2px;
@@ -93,11 +93,11 @@ body {
 
 .category-menus .btn:hover,
 .category-menus .btn.active {
-    background: linear-gradient(135deg, #3C8CE7 10%, #00EAFF 100%);
+    background: linear-gradient(135deg, #5B8DEF 0%, #4A7FE8 100%);
     color: #fff;
     border-color: transparent;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(60, 140, 231, 0.3);
+    box-shadow: 0 5px 15px rgba(74, 127, 232, 0.3);
 }
 
 /* 商品区域 */
@@ -116,18 +116,14 @@ body {
 }
 
 .goods .card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
 .goods .card-img-top {
     height: 200px;
     object-fit: cover;
-    transition: transform 0.4s ease;
-}
-
-.goods .card:hover .card-img-top {
-    transform: scale(1.1);
+    transition: all 0.3s ease;
 }
 
 .goods .badge {
@@ -139,11 +135,11 @@ body {
 }
 
 .goods .badge.bg-success {
-    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%) !important;
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%) !important;
 }
 
 .goods .badge.bg-warning {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+    background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%) !important;
 }
 
 .goods .card-body {
@@ -161,8 +157,8 @@ body {
 }
 
 .goods .btn-outline-success {
-    border-color: #38ef7d;
-    color: #11998e;
+    border-color: #10B981;
+    color: #059669;
     font-weight: 600;
     border-radius: 10px;
     padding: 5px 15px;
@@ -170,15 +166,15 @@ body {
 }
 
 .goods .btn-outline-success:hover {
-    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-    border-color: #38ef7d;
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+    border-color: #10B981;
     color: #fff;
     transform: scale(1.05);
 }
 
 .goods .btn-outline-warning {
-    border-color: #f5576c;
-    color: #f093fb;
+    border-color: #F59E0B;
+    color: #D97706;
     font-weight: 600;
     border-radius: 10px;
     padding: 5px 15px;
@@ -187,14 +183,14 @@ body {
 }
 
 .goods .btn-outline-warning:hover {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    border-color: #f5576c;
+    background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+    border-color: #F59E0B;
     color: #fff;
     transform: scale(1.05);
 }
 
 .goods .btn-primary {
-    background: linear-gradient(135deg, #3C8CE7 10%, #00EAFF 100%);
+    background: linear-gradient(135deg, #5B8DEF 0%, #4A7FE8 100%);
     border: none;
     border-radius: 25px;
     padding: 10px 20px;
@@ -205,9 +201,9 @@ body {
 }
 
 .goods .btn-primary:hover {
-    background: linear-gradient(135deg, #00EAFF 10%, #3C8CE7 100%);
+    background: linear-gradient(135deg, #4A7FE8 0%, #3B6FD8 100%);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(60, 140, 231, 0.4);
+    box-shadow: 0 8px 20px rgba(74, 127, 232, 0.3);
 }
 
 .goods .text-muted {
@@ -233,8 +229,8 @@ body {
 
 .buy-form .form-control:focus,
 .buy-form .form-select:focus {
-    border-color: #3C8CE7;
-    box-shadow: 0 0 0 3px rgba(60, 140, 231, 0.1);
+    border-color: #5B8DEF;
+    box-shadow: 0 0 0 3px rgba(91, 141, 239, 0.1);
 }
 
 /* 响应式设计 */
@@ -286,7 +282,7 @@ body {
 }
 
 .good-card .card-title {
-    color: #3C8CE7;
+    color: #5B8DEF;
     font-weight: 700;
 }
 
@@ -305,9 +301,9 @@ body {
 
 .form-control-sm:focus {
     background: #fff;
-    border-color: #3C8CE7;
+    border-color: #5B8DEF;
     color: #2d3748;
-    box-shadow: 0 0 0 3px rgba(60, 140, 231, 0.1);
+    box-shadow: 0 0 0 3px rgba(91, 141, 239, 0.1);
 }
 
 /* 商品介绍文本截断 */
