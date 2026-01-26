@@ -39,9 +39,9 @@
                                             <div class="info-item">
                                                 <span class="info-label">类型：</span>
                                                 @if($type == \App\Models\Goods::AUTOMATIC_DELIVERY)
-                                                    <span class="badge bg-success">{{ __('goods.fields.automatic_delivery') }}</span>
+                                                    <span class="badge bg-success"><i class="ali-icon">&#xe7db;</i> {{ __('goods.fields.automatic_delivery') }}</span>
                                                 @else
-                                                    <span class="badge bg-warning">{{ __('goods.fields.manual_processing') }}</span>
+                                                    <span class="badge bg-warning"><i class="ali-icon">&#xe74b;</i> {{ __('goods.fields.manual_processing') }}</span>
                                                 @endif
                                             </div>
                                             @if($buy_limit_num > 0)

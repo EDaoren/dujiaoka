@@ -112,9 +112,17 @@
     color: var(--text-secondary);
 }
 
-/* 移除可能失效的图标 */
+/* 移除可能失效的图标 - 恢复显示并美化 */
 .info-item .ali-icon {
-    display: none;
+    /* display: none; */
+    font-size: 14px;
+    margin-right: 2px;
+    vertical-align: middle;
+}
+
+.info-item .badge .ali-icon {
+    font-size: 12px;
+    margin-right: 2px;
 }
 
 .info-item .info-label {
