@@ -14,14 +14,14 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body p-3">
-                                        <h4 class="product-title mb-2 fw-bold">{{ $gd_name }}</h4>
+                                        <h5 class="product-title mb-2 fw-bold" style="font-size: 1.1rem;">{{ $gd_name }}</h5>
 
                                         <!-- 价格区域 -->
                                         <div class="price-section mb-3 p-2 rounded" style="background-color: #fff9e6;">
                                             <div class="price-label text-muted small">{{ __('dujiaoka.price') }}</div>
                                             <div class="price-value">
-                                                <span class="currency fs-5 text-danger fw-bold">{{ __('dujiaoka.money_symbol') }}</span>
-                                                <span class="amount fs-3 text-danger fw-bold">{{ $actual_price }}</span>
+                                                <span class="currency fs-6 text-danger fw-bold">{{ __('dujiaoka.money_symbol') }}</span>
+                                                <span class="amount fs-4 text-danger fw-bold">{{ $actual_price }}</span>
                                             </div>
                                         </div>
 
@@ -81,7 +81,7 @@
                                                     </div>
                                                     <div class="col-12 col-md-6">
                                                         <label for="shop-number" class="form-label small text-muted mb-1">{{ __('dujiaoka.by_amount') }}</label>
-                                                        <div class="input-group input-group-sm">
+                                                        <div class="input-group input-group-sm flex-nowrap" style="width: 130px;">
                                                             <button class="btn btn-outline-secondary" type="button" onclick="if(this.nextElementSibling.value>1)this.nextElementSibling.value--">-</button>
                                                             <input type="number" class="form-control text-center"
                                                                    id="shop-number" name="by_amount" placeholder="1" min="1" value="1">
