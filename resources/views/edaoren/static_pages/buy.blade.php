@@ -43,6 +43,10 @@
                                                 <span class="info-label">{{__('goods.fields.in_stock')}}：</span>
                                                 <span class="info-value {{ $in_stock > 0 ? 'text-success' : 'text-danger' }}">{{ $in_stock }}</span>
                                             </div>
+                                            <div class="info-item">
+                                                <span class="info-label">已售：</span>
+                                                <span class="info-value">{{ $sales_volume }}</span>
+                                            </div>
                                             @if($buy_limit_num > 0)
                                                 <div class="info-item">
                                                     <span class="badge bg-danger">
