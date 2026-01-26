@@ -118,7 +118,12 @@
                                                             {{ __('dujiaoka.home_discount') }}
                                                         </button>
                                                     @endif
-                                                    <h6 class="mt-2"><small class="text-muted">{{__('goods.fields.in_stock')}}：{{ $goods['in_stock'] }}</small></h6>
+                                                    <h6 class="mt-2">
+                                                        <small class="text-muted">{{__('goods.fields.in_stock')}}：{{ $goods['in_stock'] }}</small>
+                                                        @if(isset($goods['sales_volume']) && $goods['sales_volume'] > 0)
+                                                            <small class="text-muted ms-2">已售：{{ $goods['sales_volume'] }}</small>
+                                                        @endif
+                                                    </h6>
                                                     @if($goods['in_stock'] > 0)
                                                         <a href="{{ url("/buy/{$goods['id']}") }}" class="btn btn-primary">
                                                             <i class="ali-icon">&#xe7d8;</i>
@@ -174,7 +179,12 @@
                                                                 {{ __('dujiaoka.home_discount') }}
                                                             </button>
                                                         @endif
-                                                    <h6 class="mt-2"><small class="text-muted">{{__('goods.fields.in_stock')}}：{{ $goods['in_stock'] }}</small></h6>
+                                                    <h6 class="mt-2">
+                                                        <small class="text-muted">{{__('goods.fields.in_stock')}}：{{ $goods['in_stock'] }}</small>
+                                                        @if(isset($goods['sales_volume']) && $goods['sales_volume'] > 0)
+                                                            <small class="text-muted ms-2">已售：{{ $goods['sales_volume'] }}</small>
+                                                        @endif
+                                                    </h6>
                                                     @if($goods['in_stock'] > 0)
                                                         <a href="{{ url("/buy/{$goods['id']}") }}" class="btn btn-primary">
                                                             <i class="ali-icon">&#xe7d8;</i>
