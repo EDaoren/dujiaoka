@@ -9,63 +9,63 @@
 /* 详情页卡片 */
 .buy-detail-card {
     border: none;
-    border-radius: 12px;
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
     background: #FFFFFF;
 }
 
 .buy-detail-card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
 /* 商品图片区域 */
 .product-image-wrapper {
     position: relative;
     background: #FAFBFC;
-    padding: 40px;
+    padding: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 400px;
+    min-height: 350px;
     border-right: 1px solid #F0F0F0;
 }
 
 .product-image {
     width: 100%;
     height: auto;
-    max-width: 350px;
+    max-width: 320px;
     object-fit: contain;
-    border-radius: 8px;
+    border-radius: 6px;
 }
 
 .product-image-wrapper .badge {
-    border-radius: 0 0 8px 0;
-    padding: 6px 12px;
-    font-size: 12px;
+    border-radius: 0 0 6px 0;
+    padding: 4px 10px;
+    font-size: 11px;
     font-weight: 500;
 }
 
 /* 商品标题 */
 .product-title {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
     color: #333333;
-    line-height: 1.4;
+    line-height: 1.5;
     margin-bottom: 0;
 }
 
 /* 价格区域 */
 .price-section {
     background: linear-gradient(135deg, #FFF9E6 0%, #FFFBF0 100%);
-    border-radius: 8px;
-    padding: 16px 20px;
-    border-left: 4px solid #FFB800;
+    border-radius: 6px;
+    padding: 12px 16px;
+    border-left: 3px solid #FFB800;
 }
 
 .price-label {
-    font-size: 14px;
+    font-size: 12px;
     color: #666666;
     margin-bottom: 4px;
 }
@@ -77,13 +77,13 @@
 }
 
 .price-value .currency {
-    font-size: 18px;
+    font-size: 16px;
     color: #FF6A00;
     font-weight: 600;
 }
 
 .price-value .amount {
-    font-size: 32px;
+    font-size: 28px;
     color: #FF6A00;
     font-weight: 700;
     line-height: 1;
@@ -100,12 +100,12 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 14px;
+    font-size: 13px;
     color: #666666;
 }
 
 .info-item .ali-icon {
-    font-size: 16px;
+    font-size: 14px;
     color: #FFB800;
 }
 
@@ -121,16 +121,16 @@
 /* 批发价格区域 */
 .wholesale-section {
     background: #FAFBFC;
-    border-radius: 8px;
-    padding: 16px;
+    border-radius: 6px;
+    padding: 12px;
     border: 1px solid #F0F0F0;
 }
 
 .wholesale-title {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     color: #333333;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -138,7 +138,7 @@
 
 .wholesale-title .ali-icon {
     color: #FFB800;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .wholesale-list {
@@ -151,10 +151,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 12px;
+    padding: 6px 10px;
     background: #FFFFFF;
-    border-radius: 6px;
-    font-size: 13px;
+    border-radius: 4px;
+    font-size: 12px;
 }
 
 .wholesale-qty {
@@ -168,17 +168,17 @@
 
 /* 购买表单 */
 .buy-form .form-label {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     color: #333333;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 .buy-form .form-control {
-    border-radius: 8px;
+    border-radius: 6px;
     border: 1px solid #E8E8E8;
-    padding: 10px 14px;
-    font-size: 14px;
+    padding: 8px 12px;
+    font-size: 13px;
     transition: all 0.2s ease;
 }
 
@@ -230,9 +230,9 @@
 }
 
 .payment-method-item .btn {
-    border-radius: 8px;
-    padding: 10px 20px;
-    font-size: 14px;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 13px;
     font-weight: 500;
     border: 2px solid #E8E8E8;
     background: #FFFFFF;
@@ -245,7 +245,7 @@
     color: #FFB800;
 }
 
-.payment-method-item .btn-check:checked + .btn {
+.payment-method-item .btn-check:checked+.btn {
     background: #FFB800;
     border-color: #FFB800;
     color: #FFFFFF;
@@ -253,9 +253,9 @@
 
 /* 提交按钮 */
 .buy-form .btn-primary {
-    border-radius: 10px;
-    padding: 14px 24px;
-    font-size: 16px;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 14px;
     font-weight: 600;
     transition: all 0.3s ease;
 }
@@ -268,24 +268,24 @@
 /* 商品描述卡片 */
 .description-card {
     border: none;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border-radius: 10px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
     background: #FFFFFF;
     transition: all 0.3s ease;
 }
 
 .description-card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
 .description-card .card-header {
     background: #FAFBFC;
     border-bottom: 1px solid #E8E8E8;
-    padding: 16px 20px;
+    padding: 14px 18px;
 }
 
 .description-card .card-header h5 {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     color: #333333;
     display: flex;
@@ -295,43 +295,43 @@
 
 .description-card .card-header .ali-icon {
     color: #FFB800;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .description-card .card-body {
-    padding: 24px;
+    padding: 20px;
     color: #666666;
     line-height: 1.8;
 }
 
 .description-card .card-body p {
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .description-card .card-body img {
     max-width: 100%;
     height: auto;
-    border-radius: 8px;
-    margin: 12px 0;
+    border-radius: 6px;
+    margin: 10px 0;
 }
 
 /* 响应式设计 */
 @media (max-width: 768px) {
     .product-image-wrapper {
-        padding: 30px;
-        min-height: 300px;
+        padding: 25px;
+        min-height: 280px;
     }
 
     .product-image {
-        max-width: 250px;
+        max-width: 220px;
     }
 
     .product-title {
-        font-size: 20px;
+        font-size: 18px;
     }
 
     .price-value .amount {
-        font-size: 28px;
+        font-size: 24px;
     }
 
     .payment-methods {
@@ -360,55 +360,55 @@
 @media (max-width: 576px) {
     .product-image-wrapper {
         padding: 20px;
-        min-height: 250px;
+        min-height: 240px;
     }
 
     .product-image {
-        max-width: 200px;
+        max-width: 180px;
     }
 
     .price-section {
-        padding: 12px 16px;
+        padding: 10px 14px;
     }
 
     .price-value .amount {
-        font-size: 24px;
+        font-size: 22px;
     }
 
     .buy-form .btn-primary {
-        padding: 12px 20px;
-        font-size: 15px;
+        padding: 9px 18px;
+        font-size: 13px;
     }
 }
 
 /* 模态框优化 */
 .modal-content {
-    border-radius: 12px;
+    border-radius: 10px;
     border: none;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .modal-header {
     background: #FAFBFC;
     border-bottom: 1px solid #E8E8E8;
-    border-radius: 12px 12px 0 0;
-    padding: 16px 20px;
+    border-radius: 10px 10px 0 0;
+    padding: 14px 18px;
 }
 
 .modal-title {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     color: #333333;
 }
 
 .modal-body {
-    padding: 24px;
+    padding: 20px;
     color: #666666;
     line-height: 1.6;
 }
 
 .modal-footer {
     border-top: 1px solid #E8E8E8;
-    padding: 16px 20px;
+    padding: 14px 18px;
     background: #FAFBFC;
 }
