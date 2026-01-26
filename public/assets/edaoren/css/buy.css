@@ -1,23 +1,35 @@
 /* ========== 商品详情页样式 - 闲鱼风格 ========== */
 
+/* 详情页主容器 */
+.main-container {
+    background: #f5f7fa;
+    padding-bottom: 40px;
+}
+
 /* 详情页卡片 */
 .buy-detail-card {
     border: none;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     transition: all 0.3s ease;
+    background: #FFFFFF;
+}
+
+.buy-detail-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 /* 商品图片区域 */
 .product-image-wrapper {
     position: relative;
-    background: #F7F8FA;
+    background: #FAFBFC;
     padding: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 400px;
+    border-right: 1px solid #F0F0F0;
 }
 
 .product-image {
@@ -108,9 +120,10 @@
 
 /* 批发价格区域 */
 .wholesale-section {
-    background: #F7F8FA;
+    background: #FAFBFC;
     border-radius: 8px;
     padding: 16px;
+    border: 1px solid #F0F0F0;
 }
 
 .wholesale-title {
@@ -256,11 +269,17 @@
 .description-card {
     border: none;
     border-radius: 12px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    background: #FFFFFF;
+    transition: all 0.3s ease;
+}
+
+.description-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .description-card .card-header {
-    background: #F7F8FA;
+    background: #FAFBFC;
     border-bottom: 1px solid #E8E8E8;
     padding: 16px 20px;
 }
@@ -366,10 +385,11 @@
 .modal-content {
     border-radius: 12px;
     border: none;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 .modal-header {
-    background: #F7F8FA;
+    background: #FAFBFC;
     border-bottom: 1px solid #E8E8E8;
     border-radius: 12px 12px 0 0;
     padding: 16px 20px;
@@ -390,4 +410,5 @@
 .modal-footer {
     border-top: 1px solid #E8E8E8;
     padding: 16px 20px;
+    background: #FAFBFC;
 }

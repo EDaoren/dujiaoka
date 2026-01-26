@@ -373,11 +373,9 @@
 /* 底部样式 */
 .footer {
     background: #fff;
-    backdrop-filter: blur(10px);
     padding: 20px 0;
-    margin-top: 20px;
-    border-top: 1px solid #e2e8f0;
-    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+    margin-top: 0;
+    border-top: 1px solid #E8E8E8;
 }
 
 .footer p {
