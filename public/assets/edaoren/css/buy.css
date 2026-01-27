@@ -265,7 +265,7 @@
 
 /* 选中状态 */
 .payment-method-item .btn-check:checked+.btn {
-    background: rgb(248, 250, 255);
+    background: var(--primary-light);
     border-color: var(--primary-color);
     color: var(--primary-color);
     box-shadow: 0 4px 12px var(--primary-shadow);
