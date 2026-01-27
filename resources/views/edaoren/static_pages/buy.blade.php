@@ -134,14 +134,16 @@
                                                     @endif
 
                                                     <div class="col-12">
-                                                        <label class="form-label small text-muted mb-1">{{ __('dujiaoka.payment_method') }}</label>
+                                                        <label class="form-label text-muted mb-1">{{ __('dujiaoka.payment_method') }}</label>
                                                         <div class="payment-methods d-flex flex-wrap gap-2">
                                                             @foreach($payways as $index => $way)
                                                                 <div class="payment-method-item">
                                                                     <input type="radio" class="btn-check" id="payway-{{ $way['id'] }}"
                                                                            name="payway" value="{{ $way['id'] }}" @if($index == 0) checked="checked" @endif>
-                                                                    <label class="btn btn-sm btn-outline-secondary rounded-pill px-3" for="payway-{{ $way['id'] }}">
-                                                                        {{ $way['pay_name'] }}
+                                                                    <label class="btn btn-sm btn-outline-secondary rounded-pill px-3 payment-btn" 
+                                                                           for="payway-{{ $way['id'] }}" 
+                                                                           data-type="{{ $way['pay_check'] }}" 
+                                                                           data-name="{{ $way['pay_name'] }}">
                                                                     </label>
                                                                 </div>
                                                             @endforeach

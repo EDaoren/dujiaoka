@@ -225,7 +225,9 @@
 }
 
 .payment-method-item .btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     background: #f7f7f7;
     border: 2px solid transparent;
@@ -236,7 +238,11 @@
     color: var(--text-main);
     cursor: pointer;
     transition: all 0.2s ease;
-    min-width: 80px;
+    min-width: 100px;
+}
+
+.payment-method-item .btn svg {
+    flex-shrink: 0;
 }
 
 .payment-method-item .btn:hover {
