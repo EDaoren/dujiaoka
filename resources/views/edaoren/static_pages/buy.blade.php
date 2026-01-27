@@ -18,7 +18,7 @@
 
                                         <!-- 价格区域 -->
                                         <div class="price-section mb-3 p-2 rounded" style="background-color: #fff9e6;">
-                                            <div class="price-label text-muted small">{{ __('dujiaoka.price') }}</div>
+                                            <div class="price-label text-muted">{{ __('dujiaoka.price') }}</div>
                                             <div class="price-value">
                                                 <span class="currency fs-6 text-danger fw-bold">{{ __('dujiaoka.money_symbol') }}</span>
                                                 <span class="amount fs-4 text-danger fw-bold">{{ $actual_price }}</span>
@@ -38,14 +38,14 @@
                                             <div class="info-item">
                                                 <span class="info-label text-muted">类型：</span>
                                                 @if($type == \App\Models\Goods::AUTOMATIC_DELIVERY)
-                                                    <span class="badge bg-success small"><i class="ali-icon">&#xe7db;</i> {{ __('goods.fields.automatic_delivery') }}</span>
+                                                    <span class="badge bg-success"><i class="ali-icon">&#xe7db;</i> {{ __('goods.fields.automatic_delivery') }}</span>
                                                 @else
-                                                    <span class="badge bg-warning small"><i class="ali-icon">&#xe74b;</i> {{ __('goods.fields.manual_processing') }}</span>
+                                                    <span class="badge bg-warning"><i class="ali-icon">&#xe74b;</i> {{ __('goods.fields.manual_processing') }}</span>
                                                 @endif
                                             </div>
                                             @if($buy_limit_num > 0)
                                                 <div class="info-item">
-                                                    <span class="badge bg-danger small">
+                                                    <span class="badge bg-danger">
                                                         🛒 {{__('dujiaoka.purchase_limit')}}：{{ $buy_limit_num }}
                                                     </span>
                                                 </div>
@@ -204,7 +204,7 @@
                 myModal.show()
             });
             @endif
-            // $("input[type='number']").inputSpinner(); 
+            // $("input[type='number']").inputSpinner();
             $('#submit').click(function(){
                 if($("input[name='by_amount']").val() > {{ $in_stock }}){
                     {{-- 数量不允许大于库存 --}}
