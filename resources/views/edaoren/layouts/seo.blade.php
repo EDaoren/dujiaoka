@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_','-',strtolower(app()->getLocale())) }}">
-<body>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,11 +21,12 @@
     <link rel="stylesheet" href="/assets/edaoren/css/index.css">
     <link rel="stylesheet" href="/assets/edaoren/css/buy.css">
 </head>
+<body>
 @include('edaoren.layouts._nav')
 @yield('content')
 @include('edaoren.layouts._footer')
-</body>
 @include('edaoren.layouts._script')
 @section('js')
 @show
+</body>
 </html>

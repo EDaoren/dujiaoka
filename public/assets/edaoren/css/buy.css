@@ -184,6 +184,18 @@
     color: var(--text-light);
 }
 
+/* 隐藏 number 输入框的上下箭头 */
+.buy-form input[type="number"]::-webkit-inner-spin-button,
+.buy-form input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.buy-form input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
 /* 验证码区域 */
 .verify-code-wrapper {
     display: flex;
