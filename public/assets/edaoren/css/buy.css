@@ -68,12 +68,28 @@
     flex-wrap: wrap;
     gap: 12px;
     align-items: center;
+    font-size: 14px;
 }
 
 .product-info .info-item {
     display: inline-flex;
     align-items: center;
     gap: 4px;
+}
+
+.product-info .info-label {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.product-info .info-value {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.product-info .badge {
+    font-size: 14px;
+    padding: 4px 10px;
 }
 
 /* 批发优惠区域 */

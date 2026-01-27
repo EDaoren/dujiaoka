@@ -26,7 +26,7 @@
                                         </div>
 
                                         <!-- 商品信息 -->
-                                        <div class="product-info mb-3 small">
+                                        <div class="product-info mb-3">
                                             <div class="info-item">
                                                 <span class="info-label text-muted">{{__('goods.fields.in_stock')}}：</span>
                                                 <span class="info-value text-dark fw-bold">{{ $in_stock }}</span>
